@@ -1,0 +1,29 @@
+{{ form_start(form, {'attr': {'id': 'request-form','method':'POST','novalidate': 'novalidate', 'class':'wpforms-validate wpforms-form wpforms-ajax-form'} }) }}
+{% if form.vars.errors|length > 0 %}
+    <input type="hidden" id="form-errors" value="1">
+{% endif %}
+<div class="wpforms-field-container">
+    <div id="wpforms-176-field_0-container" class="wpforms-field wpforms-field-name" data-field-id="0">
+        {{ form_widget(form.name) }}
+    </div>
+    <div id="wpforms-176-field_1-container" class="wpforms-field wpforms-field-email" data-field-id="1">
+        {{ form_widget(form.email) }}
+        {% if form.email.vars.errors|length > 0 %}
+            <ul id="error-email">
+                {% for error in form.email.vars.errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div id="wpforms-176-field_3-container" class="wpforms-field wpforms-field-text" data-field-id="3">
+        {{ form_widget(form.subject) }}
+    </div>
+    <div id="wpforms-176-field_2-container" class="wpforms-field wpforms-field-textarea" data-field-id="2">
+        {{ form_widget(form.message) }}
+    </div>
+</div>
+<div class="wpforms-submit-container">
+    {{ form_widget(form.send_message) }}
+</div>
+{{ form_end(form) }}

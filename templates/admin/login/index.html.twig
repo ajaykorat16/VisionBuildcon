@@ -1,0 +1,29 @@
+{% extends 'admin/login/layout.html.twig' %}
+
+{% block body%}
+    <div class="row justify-content-center align-items-center w-100 h-100" style=" padding-top: 180px">
+        <div class="col-md-6 col-lg-5 position-relative">
+            <h2 class="text-center"><b>Login</b></h2>
+            <div class="login-wrap p-4 p-md-5">
+                <form action="{{ path('app_login') }}" method="post">
+                    <div class="form-group mb-4">
+                        <i class="fa fa-envelope-square" style="font-size:15px"></i>
+                        <input type="text" id="email" name="_username" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                        <i class="fa fa-key" style="font-size:15px"></i>
+                        <div class="input-group">
+                            <input type="password" id="password" name="_password" class="form-control toggle-password" style="width: 90%">
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5 mb-5">
+                        <button type="submit" class="btn btn-primary" style="width:150px; height:35px">Login</button>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

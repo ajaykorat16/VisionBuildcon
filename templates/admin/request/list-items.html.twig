@@ -1,0 +1,15 @@
+<tr class="align-middle" id="team-row-{{ requests.id }}">
+    <td class="text-center">{{ requests.id }}</td>
+    <td class="text-center">{{ requests.name }}</td>
+    <td class="text-center">{{ requests.email }}</td>
+    <td class="text-center">{{ requests.subject }}</td>
+    <td class="text-center">{{ requests.message|length >50 ? requests.message|slice(0,40) ~ '...' : requests.message }}</td>
+
+    {#    <td class="text-center client-action">#}
+{#        <a href="{{ path('teams_show', {'id': team.id}) }}" ><i class="fa-solid fa-eye"></i></a>#}
+{#        <a href="{{ path('teams_edit', {'id': team.id}) }}"><i class="fa-solid fa-pencil"></i></a>#}
+{#        <a class="delete-project" data-id="{{ team.id }}" data-name="{{ team.name }}" data-bs-toggle="modal" data-bs-target="#deleteModal">#}
+{#            <i class="fa-solid fa-trash"></i>#}
+{#        </a>#}
+{#    </td>#}
+</tr>

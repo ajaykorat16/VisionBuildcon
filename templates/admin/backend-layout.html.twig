@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {% block head %}
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>realState</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/real-estate-logo.png') }}">
+        <link href="{{ asset('css/simple-datatables-7.1.2/style.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/backend-css/backend-styles.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ asset('css/backend-css/styles.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
+        <link href="{{ asset('fontawesome-6.4.2/css/all.css') }}">
+        <link href="{{ asset('css/dropzone/dropzone.min.css') }}">
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
+    {% endblock %}
+
+    <script src="{{ asset('bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/backend-js/scripts.js') }}"></script>
+    <script src="{{ asset('js/backend-js/datatables-simple-demo.js') }}"></script>
+    <script src="{{ asset('js/jquery3.7.1.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ asset('fontawesome-6.4.2/js/all.js') }}"></script>
+    <script src="{{ asset('js/backend-js/header.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}">
+    <script src="{{ asset('js/dropzone-min.js') }}"></script>
+    <script src="{{ asset('js/dropzone.js') }}"></script>
+    <script src="{{ asset('js/backend-js/validation.js') }}"></script>
+    <script src="{{ asset('js/backend-js/list.js') }}"></script>
+
+    {% block javascripts %}
+    {% endblock %}
+
+
+    {% block stylesheets %}
+    {% endblock %}
+    </head>
+
+    <body class="sb-nav-fixed">
+
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <img type="image/x-icon" src="{{ asset('img/real-estate-logo.png') }}" class="real-estate-logo">
+            <a class="navbar-brand ps-3" href="">RE</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <a class="nav-link" href="{{ path('projects_list') }}" id="project-header">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Project
+                            </a>
+                            <a class="nav-link collapsed" href="{{ path('clients_list') }}" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Client
+                            </a>
+                            <a class="nav-link collapsed" href="{{ path('teams_list') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Team
+                            </a>
+                            <a class="nav-link" href="{{ path('services_list') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Services
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                {% for success in app.flashes('success') %}
+                    <div class="alert alert-success text-center">
+                        {{ success }}
+                    </div>
+                {% endfor %}
+                {% for warning in app.flashes('warning') %}
+                    <div class="alert alert-danger text-center">
+                        {{ warning }}
+                    </div>
+                {% endfor %}
+                <main>
+                    <div class="container-fluid px-4">
+
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

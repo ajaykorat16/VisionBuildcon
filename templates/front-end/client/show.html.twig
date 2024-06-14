@@ -1,0 +1,44 @@
+{% extends 'front-end/layout.html.twig' %}
+
+{% block body %}
+    <div data-elementor-type="wp-page" data-elementor-id="9" class="elementor elementor-9">
+        <div class="elementor-element elementor-element-1b6161c e-flex e-con-boxed e-con e-parent">
+            <div class="e-con-inner">
+                <div class="e-con-full e-flex e-con e-child" >
+                    <div class="elementor-element elementor-element-2ff45f2 elementor-widget-heading">
+                        <h1 class="elementor-heading-title elementor-size-default">Clients</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elementor-element elementor-element-3a31dfd e-flex e-con-boxed e-con e-parent pb-5">
+            <div class="e-con-inner">
+                <div class="e-con-full e-flex e-con e-child">
+                    <div class="elementor-element elementor-element-239a3f9 elementor-widget-heading">
+                        <h3 class="elementor-heading-title">Our Client</h3>
+                    </div>
+                    <div class="elementor-element elementor-element-fdd3d01 elementor-widget-heading">
+                        <h2 class="elementor-heading-title elementor-size-default">Client Details</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if clients %}
+            <div class="elementor-element elementor-element-8d1658f e-con-full e-flex e-con e-child" data-id="8d1658f" data-element_type="container">
+                <div class="elementor-element elementor-element-09c03a8 elementor-position-top elementor-widget elementor-widget-image-box">
+                    <div class="elementor-widget-container">
+                        <div class="pl-25">
+                            <figure class="elementor-image-box-img justify-content-center d-flex" style="height: 250px; width: 270px; margin: auto">
+                                <img fetchpriority="high" decoding="async"  src="{{ asset('image/' ~ clients.logo) }}" class="attachment-full size-full wp-image-88 w-100 h-100">
+                            </figure>
+                            <div class="pb-4">
+                                <h3 class="elementor-image-box-title">{{ clients.name }}</h3>
+                                <p class="elementor-image-box-description">{{ clients.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

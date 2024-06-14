@@ -1,0 +1,64 @@
+{% extends 'front-end/layout.html.twig' %}
+
+{% block body %}
+    <div data-elementor-type="wp-page" data-elementor-id="9" class="elementor elementor-9">
+        <div class="elementor-element elementor-element-1b6161c e-flex e-con-boxed e-con e-parent">
+            <div class="e-con-inner">
+                <div class="e-con-full e-flex e-con e-child" >
+                    <div class="elementor-element elementor-element-2ff45f2 elementor-widget-heading">
+                        <h1 class="elementor-heading-title elementor-size-default">Projects</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elementor-element elementor-element-3a31dfd e-flex e-con-boxed e-con e-parent pb-5">
+            <div class="e-con-inner">
+                <div class="e-con-full e-flex e-con e-child">
+                    <div class="elementor-element elementor-element-239a3f9 elementor-widget-heading">
+                        <h3 class="elementor-heading-title">Our Projects</h3>
+                    </div>
+                    <div class="elementor-element elementor-element-fdd3d01 elementor-widget-heading">
+                        <h2 class="elementor-heading-title elementor-size-default">Latest Works</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="projectListing">
+            <div class="elementor-element elementor-element-46faa25 e-con-full e-flex e-con e-parent" data-total-items="{{ totalProjects ?? 0 }}" id="projectContent">
+            {% if project %}
+                {% for projects in project %}
+                   {% include 'front-end/project/project-content.html.twig' %}
+                {% endfor %}
+                <div class="load-more-loader">
+                    {% include 'gif/loader-gif.html.twig' with {w: 44, h: 100} %}
+                </div>
+            {% else %}
+                <div class="no-results-row">
+                    <h2>No content available</h2>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+        <div class="elementor-element elementor-element-b9c37e1 e-flex e-con-boxed e-con e-parent pt-5" data-id="b9c37e1" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+            <div class="e-con-inner">
+                <div class="elementor-element elementor-element-6567c6e e-con-full e-flex e-con e-child" data-id="6567c6e" data-element_type="container">
+                    <div class="elementor-element elementor-element-18e7d38 elementor-widget elementor-widget-heading" data-id="18e7d38" data-element_type="widget" data-widget_type="heading.default">
+                        <div class="elementor-widget-container"><h3 class="elementor-heading-title elementor-size-default">Trust and Worth</h3></div>
+                    </div>
+                    <div class="elementor-element elementor-element-91e4b3d elementor-widget elementor-widget-heading" data-id="91e4b3d" data-element_type="widget" data-widget_type="heading.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">Our Clients</h2>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-dc88d2a elementor-pagination-position-outside elementor-widget elementor-widget-image-carousel e-widget-swiper" data-id="dc88d2a" data-element_type="widget" data-settings="{&quot;slides_to_show&quot;:&quot;4&quot;,&quot;navigation&quot;:&quot;dots&quot;,&quot;slides_to_show_tablet&quot;:&quot;3&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;autoplay_speed&quot;:5000,&quot;infinite&quot;:&quot;yes&quot;,&quot;speed&quot;:500}" data-widget_type="image-carousel.default" aria-roledescription="carousel" aria-label="Carousel | Horizontal scrolling: Arrow Left &amp; Right">
+                        <div class="elementor-widget-container">
+                            <div class="elementor-image-carousel-wrapper swiper swiper-initialized swiper-horizontal swiper-pointer-events" dir="ltr">
+                                {% include 'front-end/client/client.html.twig' with { client : client } %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

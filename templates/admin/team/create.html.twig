@@ -1,0 +1,54 @@
+{% extends 'admin/backend-layout.html.twig' %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/backend-js/imageDropzone.js') }}"></script>
+    <script>
+        Main.dropzoneTeamImage();
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="text-color-grey mt-15">
+        <h2>Team <small>add</small></h2>
+    </div>
+    <div class="col-md-10 col-md-offset-1 col-xs-12 form-container mt-54">
+        {{ form_start(form, {'attr': {'id': 'team-form','method':'POST','novalidate': 'novalidate'} }) }}
+
+    <div class="col-md-6 col-md-offset-3 align-center">
+        <div class="form-group mb-4 input-container">
+            <div class="input-label">
+                {{ form_label(form.name) }}
+            </div>
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.name) }}
+        </div>
+        <div class="form-group mb-4 input-container">
+            {% if team.id %}
+                <div class="pb-4">
+                    <img src="{{ asset('image/' ~ team.teamPhoto) }}" width="100px" height="100px">
+                </div>
+            {% endif %}
+            <div class="dropzone form-control" id="images" data-picture-upload="{{ path('upload_logo') }}">
+                <img class="image-upload" src="{{ asset('img/picture-upload-placeholder.png') }}" width="50" />
+                <label class="select-photo-container">
+                    <span class="select-file d-block">Select file</span>
+                    {{ form_widget(form.teamPhoto) }}
+                    {{ form_errors(form.teamPhoto) }}
+                </label>
+            </div>
+        </div>
+        <div class="form-group mb-4 input-container">
+            {{ form_widget(form.orderBy, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div>
+            <div class="mt-5 mb-5">
+                {{ form_widget(form.save) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    </div>
+    <div class="text-center mt-15 ">
+        <a href="{{ path('teams_list') }}"><i class="fa-solid fa-left-long"></i>  Back to list</a>
+    </div>
+{% endblock %}

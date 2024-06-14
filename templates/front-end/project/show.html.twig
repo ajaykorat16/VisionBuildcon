@@ -1,0 +1,44 @@
+{% extends 'front-end/layout.html.twig' %}
+
+{% block body %}
+    <div data-elementor-type="wp-page" data-elementor-id="9" class="elementor elementor-9">
+        <div class="elementor-element elementor-element-1b6161c e-flex e-con-boxed e-con e-parent">
+            <div class="e-con-inner">
+                <div class="e-con-full e-flex e-con e-child" >
+                    <div class="elementor-element elementor-element-2ff45f2 elementor-widget-heading">
+                        <h1 class="elementor-heading-title elementor-size-default">Projects</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elementor-element elementor-element-3a31dfd e-flex e-con-boxed e-con e-parent pb-5">
+            <div class="e-con-inner">
+                <div class="e-con-full e-flex e-con e-child">
+                    <div class="elementor-element elementor-element-239a3f9 elementor-widget-heading">
+                        <h3 class="elementor-heading-title">Our Projects</h3>
+                    </div>
+                    <div class="elementor-element elementor-element-fdd3d01 elementor-widget-heading">
+                        <h2 class="elementor-heading-title elementor-size-default">Latest Works</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if project %}
+            <div class="pl-25">
+                <div class="d-flex flex-column gap-4" >
+                    <div class="d-flex flex-wrap gap-5 justify-content-center">
+                        {% for image in project.images %}
+                            <img src="{{ asset('image/' ~ image.image) }}" style="height: 250px; width: 380px">
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <h4 class="text-black">
+                            <span>{{ project.name }}</span>
+                        </h4>
+                        <p class="text-black">{{ project.description}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

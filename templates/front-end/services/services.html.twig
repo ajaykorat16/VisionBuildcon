@@ -1,0 +1,87 @@
+{% extends 'front-end/layout.html.twig' %}
+
+{% block body %}
+    <div data-elementor-type="wp-page" data-elementor-id="11" class="elementor elementor-11">
+        <div class="elementor-element elementor-element-122e55f e-flex e-con-boxed e-con e-parent" data-id="122e55f" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+            <div class="e-con-inner">
+                <div class="elementor-element elementor-element-d4f38d4 e-con-full e-flex e-con e-child" data-id="d4f38d4" data-element_type="container">
+                    <div class="elementor-element elementor-element-63d7f54 elementor-widget elementor-widget-heading" data-id="63d7f54" data-element_type="widget" data-widget_type="heading.default">
+                        <div class="elementor-widget-container"><h1 class="elementor-heading-title elementor-size-default">Services</h1> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elementor-element elementor-element-5042c3a e-flex e-con-boxed e-con e-parent" data-id="5042c3a" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+            <div class="e-con-inner">
+                <div class="elementor-element elementor-element-eeba45c e-con-full e-flex e-con e-child" data-id="eeba45c" data-element_type="container">
+                    <div class="elementor-element elementor-element-76f51b9 e-con-full e-flex e-con e-child" data-id="76f51b9" data-element_type="container">
+                        <div class="elementor-element elementor-element-152a051 e-con-full e-flex e-con e-child" data-id="152a051" data-element_type="container">
+                            <div class="elementor-element elementor-element-627be20 elementor-widget elementor-widget-heading" data-id="627be20" data-element_type="widget" data-widget_type="heading.default">
+                                <div class="elementor-widget-container"><h3 class="elementor-heading-title elementor-size-default">Our Services</h3> </div>
+                            </div>
+                            <div class="elementor-element elementor-element-37f5908 elementor-widget elementor-widget-heading" data-id="37f5908" data-element_type="widget" data-widget_type="heading.default">
+                                <div class="elementor-widget-container">
+                                    <h2 class="elementor-heading-title elementor-size-default">Quality Services</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-c605f92 e-con-full e-flex e-con e-child" data-id="c605f92" data-element_type="container">
+                        {% for services in service %}
+                        <div class="elementor-element elementor-element-8d1658f e-con-full e-flex e-con e-child" data-id="8d1658f" data-element_type="container">
+                            <div class="elementor-element elementor-element-09c03a8 elementor-position-top elementor-widget elementor-widget-image-box">
+                                <div class="elementor-widget-container">
+                                   <div class="elementor-image-box-wrapper">
+                                       <figure class="elementor-image-box-img" style="height: 250px; width: 380px">
+                                           <img fetchpriority="high" decoding="async"  src="{{ asset('image/' ~ services.servicePhoto) }}" class="attachment-full size-full wp-image-88 w-100 h-100">
+                                       </figure>
+                                       <div class="elementor-image-box-content">
+                                           <h3 class="elementor-image-box-title">{{ services.name }}</h3>
+                                           <p class="elementor-image-box-description">{{ services.description }}</p>
+                                       </div>
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-3484156 elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="3484156" data-element_type="widget" data-widget_type="icon-list.default">
+                                <div class="elementor-widget-container">
+                                    <ul class="elementor-icon-list-items">
+                                        <li class="elementor-icon-list-item">
+                                            <a href="{{ path('services_show_service', {'name' : services.name}) }}">
+                                                <span class="elementor-icon-list-icon">
+                                                    <i aria-hidden="true" class="fas fa-long-arrow-alt-right"></i>
+                                                </span>
+                                                <span class="elementor-icon-list-text">Read More</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="elementor-element elementor-element-3f166c5 e-flex e-con-boxed e-con e-parent" data-id="3f166c5" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+            <div class="e-con-inner">
+                <div class="elementor-element elementor-element-c1c0aaa e-con-full e-flex e-con e-child" data-id="c1c0aaa" data-element_type="container">
+                    <div class="elementor-element elementor-element-c0eab27 elementor-widget elementor-widget-heading" data-id="c0eab27" data-element_type="widget" data-widget_type="heading.default">
+                        <div class="elementor-widget-container"><h3 class="elementor-heading-title elementor-size-default">Trust and Worth</h3> </div>
+                    </div>
+                    <div class="elementor-element elementor-element-aaa5375 elementor-widget elementor-widget-heading" data-id="aaa5375" data-element_type="widget" data-widget_type="heading.default">
+                        <div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Our Clients</h2> </div>
+                    </div>
+                    <div class="elementor-element elementor-element-b4483bb elementor-pagination-position-outside elementor-widget elementor-widget-image-carousel e-widget-swiper" data-id="b4483bb" data-element_type="widget" data-settings="{&quot;slides_to_show&quot;:&quot;4&quot;,&quot;navigation&quot;:&quot;dots&quot;,&quot;slides_to_show_tablet&quot;:&quot;3&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;autoplay_speed&quot;:5000,&quot;infinite&quot;:&quot;yes&quot;,&quot;speed&quot;:500}" data-widget_type="image-carousel.default" aria-roledescription="carousel" aria-label="Carousel | Horizontal scrolling: Arrow Left &amp; Right">
+                        <div class="elementor-widget-container">
+                            <div class="elementor-image-carousel-wrapper swiper swiper-initialized swiper-horizontal swiper-pointer-events" dir="ltr">
+                                {% include 'front-end/client/client.html.twig' with { client : client } %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'front-end/request-form.html.twig' %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'admin/backend-layout.html.twig' %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/backend-js/imageDropzone.js') }}"></script>
+    <script>
+        Main.dropzoneMultiImages();
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="text-color-grey mt-15">
+        <h2>Project <small>add</small></h2>
+    </div>
+    <div class="col-md-10 col-md-offset-1 col-xs-12 form-container mt-54">
+        {{ form_start(form, {'attr': {'id': 'projects-form','method':'POST','novalidate': 'novalidate'} }) }}
+
+    <div >
+        <div class="form-group mb-4 input-container">
+            <div class="input-label">
+                {{ form_label(form.name) }}
+            </div>
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.name) }}
+        </div>
+        <div class="form-group mb-4 input-container">
+            <div class="input-label">
+                {{ form_label(form.description) }}
+            </div>
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        {% if project.id %}
+        <div class="d-flex gap-4 flex-wrap">
+            {% for image in project.images %}
+            <div class="image-show pb-4">
+                <img class="project-image" src="{{ asset('image/' ~ image.image) }}" alt="Project Image">
+                <span class="btn-close image-remove"  aria-hidden="true" data-image-id="{{ image.id }}" data-project-id="{{ project.id }}"></span>
+            </div>
+            <span class="project-image-container" data-picture-id="{{ image.id ? image.id }}" data-picture-name="{{ image.image ? image.image }}"></span>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="dropzone project-images flex-wrap h-auto" id="images" data-picture-upload="{{ path('image_upload', {'imageType' : "project"}) }}" data-form-id="edit-project-form">
+            <img class="image-upload" src="{{ asset('img/picture-upload-placeholder.png') }}" width="50" />
+            <label class="select-photo-container">
+                <span class="select-file d-block">Select file</span>
+            </label>
+        </div>
+            <div>
+                <div class="mt-5 mb-5">
+                    {{ form_widget(form.save) }}
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>
+    </div>
+    <div class="text-center mt-15 ">
+        <a href="{{ path('projects_list') }}"><i class="fa-solid fa-left-long"></i>  Back to list</a>
+    </div>
+{% endblock %}

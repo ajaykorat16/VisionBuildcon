@@ -1,0 +1,12 @@
+<tr class="align-middle" id="project-row-{{ project.id }}">
+    <td class="text-center">{{ project.id }}</td>
+    <td class="text-center">{{ project.name }}</td>
+    <td class="text-center">{{ project.description|length >50 ? project.description|slice(0,40) ~ '...' : project.description}}</td>
+    <td class="text-center client-action">
+        <a href="{{ path('projects_show', {'id': project.id}) }}" ><i class="fa-solid fa-eye"></i></a>
+        <a href="{{ path('projects_edit', {'id': project.id}) }}"><i class="fa-solid fa-pencil"></i></a>
+        <a class="delete-project" data-id="{{ project.id }}" data-name="{{ project.name }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            <i class="fa-solid fa-trash"></i>
+        </a>
+    </td>
+</tr>

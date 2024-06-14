@@ -1,0 +1,40 @@
+{% extends 'admin/backend-layout.html.twig' %}
+
+{% block title %}Project View{% endblock %}
+
+{% block body %}
+    <div class="text-color-grey mt-15">
+        <h2>Project <small> view</small></h2>
+    </div>
+    <div class="mt-5 mb-5">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ project.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ project.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ project.description }}</td>
+            </tr>
+
+            <tr>
+                <th>Image</th>
+                {% for image in project.images %}
+                    {% if image.project.id == project.id %}
+                        <td><img src="{{ asset('image/' ~ image.image) }}" width="100px" height="100px"></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="text-center mt-15 ">
+        <a href="{{ path('projects_list') }}"><i class="fa-solid fa-left-long"></i>  Back to list</a>
+    </div>
+{% endblock %}

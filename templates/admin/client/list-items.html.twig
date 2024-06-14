@@ -1,0 +1,12 @@
+<tr class="align-middle" id="client-row-{{ clients.id }}">
+    <td class="text-center">{{ clients.id }}</td>
+    <td class="text-center">{{ clients.name }}</td>
+    <td class="text-center">{{ clients.description|length >50 ? clients.description|slice(0,40) ~ '...' : clients.description}}</td>
+    <td class="text-center client-action">
+        <a href="{{ path('clients_show', {'id': clients.id}) }}" ><i class="fa-solid fa-eye"></i></a>
+        <a href="{{ path('clients_edit', {'id': clients.id}) }}"><i class="fa-solid fa-pencil"></i></a>
+        <a class="delete-project" data-id="{{ clients.id }}" data-name="{{ clients.name }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            <i class="fa-solid fa-trash"></i>
+        </a>
+    </td>
+</tr>
