@@ -21,14 +21,15 @@
                 <th>Description</th>
                 <td>{{ project.description }}</td>
             </tr>
-
             <tr>
                 <th>Image</th>
-                {% for image in project.images %}
-                    {% if image.project.id == project.id %}
-                        <td><img src="{{ asset('image/' ~ image.image) }}" width="100px" height="100px"></td>
-                    {% endif %}
-                {% endfor %}
+
+               {% for image in project.images %}
+                {% if image.project.id == project.id %}
+                <td><img src="{{ asset('image/' ~ image.image) }}" width="100px" height="100px"></td>
+
+                {% endif %}
+            {% endfor %}
             </tr>
             </tbody>
         </table>

@@ -1,9 +1,9 @@
 {% extends 'admin/backend-layout.html.twig' %}
 
 {% block body %}
-{#    <div class="load-more-loader">#}
-{#        {% include 'gif/loader-gif.html.twig' with {w: 44, h: 44} %}#}
-{#    </div>#}
+    <div class="load-more-loader">
+        {% include 'gif/loader-gif.html.twig' with {w: 44, h: 44} %}
+    </div>
     <div class="text-color-grey mt-15">
         <h2>Request</h2>
     </div>
@@ -20,7 +20,7 @@
 {#    <div class="text-right mt-2">#}
 {#        <a class="btn btn-primary" href="{{ path('teams_create') }}"><i class="fa-solid fa-plus"></i> Add</a>#}
 {#    </div>#}
-    <div>
+    <div class="pt-5">
         <table class="table table-bordered table-striped m-auto" id="request-list">
             <!-- Table header -->
             <thead>

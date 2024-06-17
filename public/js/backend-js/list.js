@@ -42,6 +42,17 @@ var Main = Main || {};
 
     });
 //----------- /service-load-more ---------------//
+
+//----------- request-load-more ---------------//
+    $(window).on('scroll', function () {
+        let $table = $("#request-list");
+        let totalItems = $("#requestList").data('total-items');
+        let url = 'request_load_more';
+        module.listingLoader($table, totalItems,url);
+
+    });
+//----------- /request-load-more ---------------//
+
 module.listingLoader = function ($table,totalItems,url) {
     let scrolled = window.scrollY;
     let availableScroll = Math.max($(document).height() - $(window).height(), 0);
@@ -75,3 +86,4 @@ module.listingLoader = function ($table,totalItems,url) {
     }
 };
 })(jQuery, Main);
+

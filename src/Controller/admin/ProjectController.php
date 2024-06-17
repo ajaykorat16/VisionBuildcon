@@ -109,7 +109,16 @@ class ProjectController extends AbstractController
 
                 foreach ($uploadedImages as $tempFilename) {
                     $image = new Images();
-                    $image->setImage($tempFilename);
+
+                    if($tempFilename){
+                        $existingImagePath = 'image/' . $image->getImage();
+
+                        if (is_file($existingImagePath)) {
+                            unlink($existingImagePath);
+                        }
+
+                        $image->setImage($tempFilename);
+                    }
                     $project->addImage($image);
                 }
             }
@@ -135,6 +144,16 @@ class ProjectController extends AbstractController
     #[Route('/delete/{id}' ,name: '_delete' , options: ['expose' => true])]
     public function delete(Project $project): JsonResponse
     {
+        $images = $project->getImages();
+
+        foreach ($images as $image) {
+            $imagePath = 'image/' . $image->getImage();
+
+            if (is_file($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
         $project->setDeletedAt(new \DateTimeImmutable());
         $this->entityManager->flush();
 

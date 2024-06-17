@@ -4,6 +4,7 @@
     <script src="{{ asset('js/backend-js/imageDropzone.js') }}"></script>
     <script>
         Main.dropzoneMultiImages();
+        // Main.createRemoveButton();
     </script>
 {% endblock %}
 
@@ -31,9 +32,11 @@
         {% if project.id %}
         <div class="d-flex gap-4 flex-wrap">
             {% for image in project.images %}
-            <div class="image-show pb-4">
+            <div class="image-show pb-4 d-flex">
                 <img class="project-image" src="{{ asset('image/' ~ image.image) }}" alt="Project Image">
-                <span class="btn-close image-remove"  aria-hidden="true" data-image-id="{{ image.id }}" data-project-id="{{ project.id }}"></span>
+                <div class="image-main">
+                    <span class="btn-close image-remove"  aria-hidden="true" data-image-id="{{ image.id }}" data-project-id="{{ project.id }}"></span>
+                </div>
             </div>
             <span class="project-image-container" data-picture-id="{{ image.id ? image.id }}" data-picture-name="{{ image.image ? image.image }}"></span>
             {% endfor %}
@@ -45,11 +48,11 @@
                 <span class="select-file d-block">Select file</span>
             </label>
         </div>
-            <div>
-                <div class="mt-5 mb-5">
-                    {{ form_widget(form.save) }}
-                </div>
+        <div>
+            <div class="mt-5 mb-5">
+                {{ form_widget(form.save) }}
             </div>
+        </div>
         {{ form_end(form) }}
     </div>
     </div>

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('admin/request', name: '_list')]
+#[Route('admin/request', name: 'request')]
 class RequestController extends AbstractController
 {
     public function __construct(
@@ -36,7 +36,7 @@ class RequestController extends AbstractController
         $content = '';
 
         foreach ($requestEntity as $requests) {
-            $content .= $this->renderView('admin/request/list-items.html.twig', ['request' => $requests]);
+            $content .= $this->renderView('admin/request/list-items.html.twig', ['requests' => $requests]);
         }
 
         return new Response($content);

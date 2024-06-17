@@ -7,9 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>realState</title>
+        <title>Vision Buildcon</title>
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/real-estate-logo.png') }}">
-        <link href="{{ asset('css/simple-datatables-7.1.2/style.min.css') }}" rel="stylesheet" />
         <link href="{{ asset('css/backend-css/backend-styles.css') }}" rel="stylesheet" media="screen">
         <link href="{{ asset('css/backend-css/styles.css') }}" rel="stylesheet" media="screen">
         <link href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
@@ -44,7 +43,7 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <img type="image/x-icon" src="{{ asset('img/real-estate-logo.png') }}" class="real-estate-logo">
-            <a class="navbar-brand ps-3" href="">RE</a>
+            <a class="navbar-brand ps-3" href="">Vision Buildcon</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -82,6 +81,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Services
                             </a>
+                            <a class="nav-link" href="{{ path('request_list') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-code-pull-request"></i></div>
+                                Requests
+                            </a>
                         </div>
                     </div>
                 </nav>
@@ -107,7 +110,6 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-
                         </div>
                     </div>
                 </footer>

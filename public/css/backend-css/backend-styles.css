@@ -11259,3 +11259,11 @@ body {
   background: none !important;
 }
 
+.project-image-remove {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: red;
+  cursor: pointer;
+  z-index: 10;
+}

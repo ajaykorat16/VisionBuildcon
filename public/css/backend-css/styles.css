@@ -20734,8 +20734,19 @@ th.material-actions {
     height: 100px;
 }
 
-.image-remove{
+.image-main{
+    background-color: gray;
+    border-radius: 50%;
+    margin-left: 88px;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
     position: absolute;
-    width: 0em;
-    margin-left: 4px;
+}
+.image-remove{
+    font-size: 6px;
+    margin-left: 1px;
 }
