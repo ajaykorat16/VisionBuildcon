@@ -303,7 +303,8 @@
                 var _ref;
                 if (file.previewElement) {
                     if ((_ref = file.previewElement) != null) {
-                        _ref.parentNode.removeChild(file.previewElement);
+                        //_ref.parentNode.removeChild(file.previewElement);
+                        _ref.style.display = "none";
                     }
                 }
                 return this._updateMaxFilesReachedClass();

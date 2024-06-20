@@ -21,7 +21,6 @@ class Services
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
     private ?string $service_photo = null;
 
     #[ORM\Column(length: 255)]
@@ -56,7 +55,7 @@ class Services
         return $this->service_photo;
     }
 
-    public function setServicePhoto(string $service_photo): self
+    public function setServicePhoto(?string $service_photo): self
     {
         $this->service_photo = $service_photo;
 

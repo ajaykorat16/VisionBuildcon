@@ -22,8 +22,6 @@ class Teams
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-//    #[Assert\Image(maxWidth: 1000, maxHeight: 1000)]
     private ?string $team_photo = null;
 
     #[ORM\Column(length: 255)]
@@ -54,7 +52,7 @@ class Teams
         return $this->team_photo;
     }
 
-    public function setTeamPhoto(string $team_photo): self
+    public function setTeamPhoto(?string $team_photo): self
     {
         $this->team_photo = $team_photo;
 

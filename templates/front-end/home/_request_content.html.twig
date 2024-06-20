@@ -5,6 +5,7 @@
 <div class="wpforms-field-container">
     <div id="wpforms-176-field_0-container" class="wpforms-field wpforms-field-name" data-field-id="0">
         {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
     </div>
     <div id="wpforms-176-field_1-container" class="wpforms-field wpforms-field-email" data-field-id="1">
         {{ form_widget(form.email) }}
@@ -18,9 +19,13 @@
     </div>
     <div id="wpforms-176-field_3-container" class="wpforms-field wpforms-field-text" data-field-id="3">
         {{ form_widget(form.subject) }}
+        {{ form_errors(form.subject) }}
+
     </div>
     <div id="wpforms-176-field_2-container" class="wpforms-field wpforms-field-textarea" data-field-id="2">
         {{ form_widget(form.message) }}
+        {{ form_errors(form.message) }}
+
     </div>
 </div>
 <div class="wpforms-submit-container">

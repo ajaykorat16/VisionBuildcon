@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Controller\admin;
+namespace App\Controller\Admin;
 use App\Entity\Client;
 use App\Form\ClientType;
 use App\Form\SearchType;
 use App\Repository\ClientRepository;
-use App\Uploader\ImageUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -67,8 +66,6 @@ class ClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $client->setLogo($form->get('logo')->getData());
-
             $this->entityManager->persist($client);
             $this->entityManager->flush();
 
@@ -83,23 +80,25 @@ class ClientController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: '_edit')]
-    public function edit(Request $request, ImageUploader $imageUploader, Client $client):Response
+    public function edit(Request $request, Client $client): Response
     {
+        if (file_exists($client->getLogo())) {
+            unlink('image/' .$client->getLogo());
+            $client->setLogo(null);
+        }
+
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $imageFile = $form->get('logo')->getData();
-            $client->setLogo($imageFile);
-
             $this->entityManager->flush();
 
-            $this->addFlash('success','New client has updated Successfully...');
+            $this->addFlash('success', 'Client has been updated successfully...');
             return $this->redirectToRoute('clients_list');
         }
 
-        return $this->render('admin/client/create.html.twig',[
+        return $this->render('admin/client/create.html.twig', [
             'form' => $form->createView(),
             'client' => $client
         ]);

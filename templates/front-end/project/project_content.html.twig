@@ -1,7 +1,9 @@
 {% set project_name = projects.name | replace({'#': '-'}) %}
 <a id="project-row-{{ projects.id }}" href="{{ path('project_show', {'name': project_name}) }}" class="elementor-element elementor-element-1cc3882 e-con-full e-flex e-con e-child project-item">
     <div style="height: 250px">
-        <img src="{{ asset('image/' ~ projects.images.first.image) }}" class="h-100 w-100">
+        {% if projects.images.first()  == true %}
+            <img src="{{ asset('image/' ~ projects.images.first.image) }}" class="h-100 w-100">
+        {% endif %}
     </div>
     <div class="elementor-element elementor-element-11053e9 project-title elementor-widget-icon-box" >
         <h4 class="elementor-icon-box-title">

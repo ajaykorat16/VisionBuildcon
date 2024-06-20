@@ -1,9 +1,11 @@
-{% extends 'admin/backend-layout.html.twig' %}
+{% extends 'admin/backend_layout.html.twig' %}
 
 {% block javascripts %}
     <script src="{{ asset('js/backend-js/imageDropzone.js') }}"></script>
     <script>
-        Main.dropzoneImage();
+        DropZone.dropzoneImage();
+        DropZone.initRemoveImages('.remove-client-image',"#images",'.client-images', '.image-upload');
+        DropZone.initRemovePhotos('.logo-remove','#client_logo');
     </script>
 {% endblock %}
 
@@ -30,9 +32,12 @@
                 {{ form_errors(form.description) }}
             </div>
             <div class="form-group mb-4 input-container">
-                {% if client.id %}
-                    <div class="pb-4">
-                        <img src="{{ asset('image/' ~ client.logo) }}" width="100px" height="100px">
+                {% if client.logo %}
+                    <div class="photo-remove">
+                        <div class="pb-4 ">
+                            <img src="{{ asset('image/' ~ client.logo) }}" width="100px" height="100px">
+                        </div>
+                        <span class="btn-close image-main logo-remove top-2 right-19 box-sizing" aria-hidden="true"></span>
                     </div>
                 {% endif %}
                 <div class="dropzone client-images form-control" id="images" data-picture-upload="{{ path('upload_logo') }}" data-form-id="edit-client-form">
@@ -40,7 +45,6 @@
                     <label class="select-photo-container">
                         <span class="select-file d-block">Select file</span>
                         {{ form_widget(form.logo, {'attr': {'class': 'form-control'}}) }}
-                        {{ form_errors(form.logo) }}
                     </label>
                 </div>
             </div>

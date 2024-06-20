@@ -30,6 +30,5 @@ class ImageUploader
          }
 
          return $newFileName;
-
      }
 }

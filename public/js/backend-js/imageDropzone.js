@@ -1,4 +1,4 @@
-var Main = Main || {};
+var DropZone = DropZone || {};
 
 (function($, module) {
 
@@ -9,25 +9,24 @@ var Main = Main || {};
             paramName: "file",
             acceptedFiles: "image/*",
             clickable: [".select-file"],
-            success: function(file, response) {
-                var uploadedImages = document.getElementById('project_images');
-                var currentImages = uploadedImages.value ? uploadedImages.value.split(',') : [];
-                var newImages = response.images.map(image => image.path);
+            successmultiple: function(file, response) {
+                var imageVal = $("#project_images");
 
-                newImages.forEach(newImage => {
-                    if (!currentImages.includes(newImage)) {
-                        currentImages.push(newImage);
+                $('.project-images').addClass('image-row');
+                $('.image-upload').addClass('visibility-hidden');
+
+                if (response.images.length > 0) {
+                    for (var i = 0; i < file.length; i++) {
+                        var removeButton = Dropzone.createElement("<span class='btn-close image-main remove-product-image top-5 right-5 z-index-10'></span>");
+                        let imagePath = response.images[i];
+                        $(file[i].previewElement).attr('data-image-path', imagePath.path)
+                        $(file[i].previewElement).append(removeButton);
                     }
-                });
-
-                uploadedImages.value = currentImages.join(',');
-
-                if (uploadedImages.value) {
-                    $('.project-images').addClass('image-row');
-                    $('.image-upload').addClass('visibility-hidden');
                 }
 
-                createRemoveButton(newImages, currentImages, uploadedImages, file);
+                setTimeout(function () {
+                    module.updateProductImages(imageVal);
+                }, 200)
             },
 
             error: function(file, response) {
@@ -71,68 +70,74 @@ var Main = Main || {};
         });
      }
 
-    function createRemoveButton(newImage, currentImages, uploadedImages, file) {
-        var removeButton = Dropzone.createElement("<button class='btn btn-danger mt-2'><i class='fa fa-trash' aria-hidden='true'></i></button>");
+    module.initRemoveImage = function (removeImage, images, addRow, imageUpload, imageVal) {
+        $(document).on("click", removeImage, function () {
+            $(this).closest('.dz-preview').remove();
 
-        newImage.forEach(newImages => {
-         $(removeButton).on("click",function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+            if ($(images).find('.dz-image-preview').length === 0) {
+                $(addRow).removeClass('image-row');
+                $(imageUpload).removeClass('visibility-hidden');
+            }
 
-             var url = Routing.generate('project_remove_images', { path: encodeURIComponent(newImages) });
-
-             $.ajax({
-                url: url,
-                success: function(response) {
-                    if (response.status === 'success') {
-                        currentImages = currentImages.filter(img => img !== newImages);
-                        uploadedImages.value = currentImages.join(',');
-
-                        file.previewElement.remove();
-
-                        if (currentImages.length === 0) {
-                            $('.project-images').removeClass('image-row');
-                            $('.image-upload').removeClass('visibility-hidden');
-                        }
-
-                        console.log(uploadedImages.value); // Debugging output
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error deleting image:', error);
-                    alert('Error deleting image. Please try again.');
-                }
-            });
-        });
-        file.previewElement.appendChild(removeButton);
-        });
+            module.updateProductImages(imageVal);
+        })
     }
 
-    // function addRemoveButtonsToImages(newImages, currentImages, uploadedImages, file) {
-    //     newImages.forEach(newImage => {
-    //         var removeButton = createRemoveButton(newImage, currentImages, uploadedImages, file);
-    //         file.previewElement.appendChild(removeButton);
-    //     });
-    // }
-    // // \\//\\//\\//\\-------- client image-----------//\\//\\//\\//\\
+    module.updateProductImages = function (imageVal) {
+        let productImages = [];
 
+        $('.dz-image-preview').each(function () {
+            let imagePath = $(this).data("image-path");
+            productImages.push(imagePath);
+        })
+
+        $(imageVal).val(productImages.join(','));
+    }
+
+    module.initRemoveImages = function (removeImages, images, imagesRow, imageUpload) {
+        $(document).on("click", removeImages, function () {
+
+            $(this).closest('.dz-preview').remove();
+
+            if ($(images).find('.dz-image-preview').length === 0) {
+                $(imagesRow).removeClass('image-row');
+                $(imageUpload).removeClass('visibility-hidden');
+                // $('.dz-message').style.display = "block";
+            }
+
+            module.updateImages();
+            module.updateTeamImages();
+            module.updateServiceImages();
+        })
+    }
+
+/////---------------------------client-logo---------------------------------//////
+    module.updateImages = function () {
+        let imagePath = $('.dz-image-preview').data("image-path") || '';
+        $('#client_logo').val(imagePath);
+    }
     module.dropzoneImage = function () {
         Dropzone.options.images = {
             url: "/logo", // Route to handle the image upload
             paramName: "file",
-            uploadMultiple: false,
             maxFilesize: 2, // MB
+            multiple: false,
             maxFiles: 1,
             acceptedFiles: "image/*",
             clickable: [".select-file"],
             success: function (file, response) {
-                var uploadLogo = document.getElementById('client_logo');
-                uploadLogo.value = response.fileName;
+                let clientLogo = document.getElementById('client_logo');
+                clientLogo.value = response.fileName;
 
-                if (uploadLogo.value) {
+                if (response.fileName) {
                     $('.image-upload').addClass('visibility-hidden');
+                }
+
+                if (response.fileName.length > 0) {
+                    var removeButton = Dropzone.createElement("<span class='btn-close image-main remove-client-image top-5 right-5 z-index-10'></span>");
+                    let imagePath = response.fileName;
+                    $(file.previewElement).attr('data-image-path', imagePath)
+                    $(file.previewElement).append(removeButton);
                 }
             },
             init: function () {
@@ -140,54 +145,115 @@ var Main = Main || {};
                     this.removeAllFiles();
                     this.addFile(file);
                 });
+            },
+            // error: function (file, response) {
+            //     console.error(response);
+            // },
+
+            dragenter: function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#image-upload").addClass("drag-active");
+            },
+
+            dragleave: function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#image-upload").removeClass("drag-active");
+            },
+
+            drop: function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#image-upload").removeClass("drag-active");
             }
         };
     }
 
-    //\\//\\//\\//\\-------- team image-----------//\\//\\//\\//\\
-
+//\\//\\//\\//\\-------- team image-----------//\\//\\//\\//\\
+    module.updateTeamImages = function () {
+        let imagePath = $('.dz-image-preview').data("image-path") || '';
+        $('#team_teamPhoto').val(imagePath);
+    }
     module.dropzoneTeamImage = function () {
         Dropzone.options.images = {
             url: "/logo", // Route to handle the image upload
             paramName: "file",
-            uploadMultiple: false,
-            maxFilesize: 2, // MB
+            multiple: false,
             maxFiles: 1,
+            maxFilesize: 2, // MB
             acceptedFiles: "image/*",
             clickable: [".select-file"],
             success: function (file, response) {
-                var uploadLogo = document.getElementById('team_teamPhoto');
-                uploadLogo.value = response.fileName;
+                let teamPhoto = document.getElementById('team_teamPhoto');
+                teamPhoto.value = response.fileName;
 
-                if (uploadLogo.value) {
+                if (response.fileName) {
                     $('.image-upload').addClass('visibility-hidden');
                 }
+
+                if (response.fileName.length > 0) {
+                    var removeButton = Dropzone.createElement("<span class='btn-close image-main remove-team-image top-5 right-5 z-index-10'></span>");
+                    let imagePath = response.fileName;
+                    $(file.previewElement).attr('data-image-path', imagePath)
+                    $(file.previewElement).append(removeButton);
+                }
+
             },
             init: function () {
                 this.on("maxfilesexceeded", function (file) {
                     this.removeAllFiles();
                     this.addFile(file);
                 });
+            },
+
+            dragenter: function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#image-upload").addClass("drag-active");
+            },
+
+            dragleave: function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#image-upload").removeClass("drag-active");
+            },
+
+            drop: function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#image-upload").removeClass("drag-active");
             }
         };
     }
-    //\\//\\//\\//\\-------- service image-----------//\\//\\//\\//\\
 
+//\\//\\//\\//\\-------- service image-----------//\\//\\//\\//\\
+    module.updateServiceImages = function () {
+        let imagePath = $('.dz-image-preview').data("image-path") || '';
+        $('#service_servicePhoto').val(imagePath);
+    }
     module.dropzoneServiceImage = function () {
         Dropzone.options.images = {
             url: "/logo", // Route to handle the image upload
             paramName: "file",
-            uploadMultiple: false,
-            maxFilesize: 7, // MB
+            multiple: false,
             maxFiles: 1,
+            maxFilesize: 7, // MB
             acceptedFiles: "image/*",
             clickable: [".select-file"],
             success: function (file, response) {
-                var uploadLogo = document.getElementById('service_servicePhoto');
-                uploadLogo.value = response.fileName;
+                let servicePhoto = document.getElementById('service_servicePhoto');
+                servicePhoto.value = response.fileName;
 
-                if (uploadLogo.value) {
+                if (response.fileName) {
                     $('.image-upload').addClass('visibility-hidden');
+                }
+
+                if (response.fileName.length > 0) {
+                    var removeButton = Dropzone.createElement("<span class='btn-close image-main remove-service-image top-5 right-5 z-index-10'></span>");
+                    let imagePath = response.fileName;
+                    $(file.previewElement).attr('data-image-path', imagePath)
+                    $(file.previewElement).append(removeButton);
                 }
             },
             init: function () {
@@ -195,7 +261,50 @@ var Main = Main || {};
                     this.removeAllFiles();
                     this.addFile(file);
                 });
+            },
+
+            dragenter: function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#image-upload").addClass("drag-active");
+            },
+
+            dragleave: function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#image-upload").removeClass("drag-active");
+            },
+
+            drop: function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $("#image-upload").removeClass("drag-active");
             }
         };
     }
-})(jQuery, Main)
+
+    module.initRemovePhotos = function (removePhoto, imageId) {
+        $(document).on("click", removePhoto, function () {
+            $(this).closest('.photo-remove').remove();
+            $(imageId).val('');
+        });
+    }
+
+    $(document).ready(function () {
+        let checkedIsVisible = $('#service_is_visible');
+
+        $(checkedIsVisible).on('change',function () {
+            this.value = this.checked ? 1 : 0;
+            this.isVisible = this.checked ? true : false;
+            console.log(this.value);
+
+            if(this.isVisible == true){
+                checkedIsVisible.attr('is-visible', isVisible = true);
+                checkedIsVisible.attr('checked', checked = true);
+            }else{
+                checkedIsVisible.attr('is-visible', isVisible = false);
+                checkedIsVisible.attr('checked', checked = false);
+            }
+        })
+    })
+})(jQuery, DropZone)

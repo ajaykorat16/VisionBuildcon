@@ -10,16 +10,15 @@ var Main = Main || {};
     }
 
     // Generalized save event handler
-    function saveHandler(saveBtn, nameSelector, descSelector, imgSelector, validateImage) {
+    function saveHandler(saveBtn, nameSelector, descSelector) {
         $(document).on("click", saveBtn, function (e) {
             e.preventDefault();
 
             const $name = $(nameSelector);
-            const $textarea = $(descSelector);
-            const $image = imgSelector ? $(imgSelector) : null;
+            const $textarea = descSelector ? $(descSelector) : null;
 
-            const isValid = module.validate($textarea, $name, $image, validateImage);
-
+            const isValid = module.validate($textarea, $name);
+            console.log(isValid);
             if (isValid) {
                 $(this).closest('form').submit();
             }
@@ -27,16 +26,16 @@ var Main = Main || {};
     }
 
     // Register remove 'is-invalid' events
-    removeInvalidClass("#project_name, #project_description, #client_name, #client_description, #service_name, #service_description, #team_name, #images");
+    removeInvalidClass("#project_name, #project_description, #client_name, #client_description, #service_name, #service_description, #team_name");
 
-    saveHandler("#project_save", "#project_name", "#project_description", null, false);
-    saveHandler("#client_save", "#client_name", "#client_description", "#client_logo", true);
-    saveHandler("#service_save", "#service_name", "#service_description", "#service_servicePhoto", true);
-    saveHandler("#team_save", "#team_name", null, "#team_teamPhoto", true);
+    saveHandler("#project_save", "#project_name", "#project_description");
+    saveHandler("#client_save", "#client_name", "#client_description");
+    saveHandler("#service_save", "#service_name", "#service_description");
+    saveHandler("#team_save", "#team_name", null);
 
-    module.validate = function ($textarea, $name, $image, validateImage) {
+    module.validate = function ($textarea, $name) {
         let isValid = true;
-
+        console.log(isValid);
         if ($textarea && !$textarea.val()) {
             $textarea.addClass("is-invalid");
             isValid = false;
@@ -50,13 +49,7 @@ var Main = Main || {};
         } else {
             $name.removeClass("is-invalid");
         }
-
-        if (validateImage && $image && !$image.val()) {
-            $('#images').addClass("is-invalid");
-            isValid = false;
-        } else {
-            $image && $('#images').removeClass("is-invalid");
-        }
+        console.log(isValid);
 
         return isValid;
     };

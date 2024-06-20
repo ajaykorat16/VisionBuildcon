@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\frontEnd;
+namespace App\Controller\FrontEnd;
 
 use App\Entity\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

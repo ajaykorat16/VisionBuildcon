@@ -58,7 +58,7 @@ class ProjectRepository extends ServiceEntityRepository
         }
 
         $qb->andWhere('p.deletedAt IS NULL')
-            ->orderBy('p.id', "ASC");
+            ->orderBy('p.id', "DESC");
 
         return $qb;
     }
@@ -87,7 +87,7 @@ class ProjectRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
                     ->andWhere('p.deletedAt IS NULL')
-                    ->orderBy('p.id', "ASC")
+                    ->orderBy('p.id', "DESC")
                     ->getQuery()->getResult();
     }
 }

@@ -21,8 +21,6 @@ class Client
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-//    #[Assert\NotBlank]
-//    #[Assert\Image(maxWidth: 500, maxHeight: 500)]
     private ?string $logo = null;
 
     #[ORM\Column(length: 255)]

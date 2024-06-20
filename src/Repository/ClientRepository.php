@@ -89,4 +89,14 @@ class ClientRepository extends ServiceEntityRepository
             ->andWhere('c.deletedAt IS NULL')
             ->getQuery()->getResult();
     }
+
+//    public function findByClientPhotos($id) :QueryBuilder
+//    {
+//        return  $this->createQueryBuilder('c');
+//           ->select('c.logo')
+//                ->andWhere('c.id = :val')
+//                ->setParameter('val', '%' .$id. '%')
+//                ->getQuery()
+//                ->getOneOrNullResult();
+//    }
 }

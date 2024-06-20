@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\admin;
+namespace App\Controller\Admin;
 
 use App\Entity\Images;
 use App\Repository\ImagesRepository;
@@ -47,13 +47,7 @@ class ImagesController extends AbstractController
 
         return new JsonResponse($response, Response::HTTP_OK);
     }
-    #[Route('/get-image/{id}', name: 'get_upload_image')]
-    public function getUploadImage(string $id): JsonResponse
-    {
-        $images = $this->imagesRepository->find($id);
 
-        return new JsonResponse($images->getId(), Response::HTTP_OK);
-    }
     #[Route('/remove-image/{imageId}', name: 'project_remove_image', options: ['expose' => true ])]
     public function removeImage(int $imageId): JsonResponse
     {
@@ -67,24 +61,6 @@ class ImagesController extends AbstractController
         }
 
         return new JsonResponse(['status' => 'error', 'message' => 'Image not found'], Response::HTTP_NOT_FOUND);
-    }
-
-    #[Route('/remove/{path}', name: 'project_remove_images', options: ['expose' => true ])]
-    public function removeImages(string $path): JsonResponse
-    {
-        $imagePath = urldecode($path);
-        $fullPath = 'image/' . $imagePath;
-
-        if (file_exists($fullPath)) {
-            try {
-                unlink($fullPath);
-                return new JsonResponse(['status' => 'success'], Response::HTTP_OK);
-            } catch (\Exception $e) {
-                return new JsonResponse(['status' => 'error', 'message' => 'Failed to delete image. Please try again.'], Response::HTTP_INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new JsonResponse(['status' => 'error', 'message' => 'Image not found.'], Response::HTTP_NOT_FOUND);
     }
 
     #[Route('/logo', name: 'upload_logo',  methods: ['POST'], options: ['expose' => true])]

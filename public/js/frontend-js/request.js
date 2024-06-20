@@ -11,6 +11,7 @@ $(document).ready(function() {
         requestForm.show();
     });
 
+
     $('#request-form').on('submit', function(event) {
         event.preventDefault();
         var $form = $(this);
@@ -26,11 +27,10 @@ $(document).ready(function() {
                 var errorMessages = responseHtml.find('#error-email').html();
 
                 $form.html(newFormHtml);
-
+                console.log(responseHtml);
                 if (successMessage && successMessage.trim().length > 0) {
                     $('#flash-messages').html(successMessage).fadeIn();
                     scrollToSuccessMessage();
-
                 } else if (errorMessages && errorMessages.trim().length > 0) {
                     scrollToForm();
                 } else {

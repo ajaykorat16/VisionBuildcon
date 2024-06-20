@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\admin;
+namespace App\Controller\Admin;
 
 use App\Entity\Images;
 use App\Form\ProjectType;
@@ -68,16 +68,18 @@ class ProjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $new = $request->request->all();
 
-            if (!is_array($new['project']['images'])) {
-                $uploadedImages = [$new['project']['images']];
-            } else {
-                $uploadedImages = explode(',', $new['project']['images']);
-            }
+            if($new['project']['images']){
+                if (!is_array($new['project']['images'])) {
+                    $uploadedImages = [$new['project']['images']];
+                } else {
+                    $uploadedImages = explode(',', $new['project']['images']);
+                }
 
-            foreach ($uploadedImages as $tempFilename) {
-                $image = new Images();
-                $image->setImage($tempFilename);
-                $project->addImage($image);
+                foreach ($uploadedImages as $tempFilename) {
+                    $image = new Images();
+                    $image->setImage($tempFilename);
+                    $project->addImage($image);
+                }
             }
 
             $this->entityManager->persist($project);

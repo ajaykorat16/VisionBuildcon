@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\frontEnd;
+namespace App\Controller\FrontEnd;
 
 use App\Entity\Request as RequestEntity;
 use App\Form\RequestType;
@@ -34,7 +34,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/load-more', name: '_content_load_more', options: ['expose' => true])]
-    public function contentLoadMore(Request $request): Response
+    public function LoadMoreAction(Request $request): Response
     {
         $offset = (int) $request->query->get('offset');
 
@@ -42,7 +42,7 @@ class ProjectController extends AbstractController
         $content = '';
 
         foreach ($project as $projects) {
-            $content .= $this->renderView('front-end/project/project-content.html.twig', ['projects' => $projects]);
+            $content .= $this->renderView('front-end/project/project_content.html.twig', ['projects' => $projects]);
         }
 
         return new Response($content);
@@ -51,7 +51,8 @@ class ProjectController extends AbstractController
     #[Route('/{name}', name: '_show')]
     public function show(string $name): Response
     {
-        $originalName = str_replace('-', '#', $name);
+        $originalName = str_replace('-','#' , $name);
+
         $project = $this->projectRepository->findOneBy(['name' => $originalName]);
 
         return $this->render('front-end/project/show.html.twig', [

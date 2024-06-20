@@ -1,10 +1,10 @@
-{% extends 'admin/backend-layout.html.twig' %}
+{% extends 'admin/backend_layout.html.twig' %}
 
 {% block javascripts %}
     <script src="{{ asset('js/backend-js/imageDropzone.js') }}"></script>
     <script>
-        Main.dropzoneMultiImages();
-        // Main.createRemoveButton();
+        DropZone.dropzoneMultiImages();
+        DropZone.initRemoveImage(".remove-product-image","#images",'.project-images','.image-upload', "#project_images")
     </script>
 {% endblock %}
 

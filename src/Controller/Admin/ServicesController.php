@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\admin;
+namespace App\Controller\Admin;
 
 use App\Entity\Services;
 use App\Form\SearchType;
@@ -68,8 +68,6 @@ class ServicesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $service->setServicePhoto($form->get('servicePhoto')->getData());
-
             $this->entityManager->persist($service);
             $this->entityManager->flush();
 
@@ -86,16 +84,19 @@ class ServicesController extends AbstractController
     #[Route('/edit/{id}', name: '_edit')]
     public function edit(Request $request, Services $service):Response
     {
+        if (file_exists($service->getServicePhoto())) {
+            unlink('image/' .$service->getServicePhoto() );
+            $service->setServicePhoto(null);
+        }
+
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $service->setServicePhoto($form->get('servicePhoto')->getData());
-
             $this->entityManager->flush();
 
-            $this->addFlash('success','Service has updated Successfully...');
+            $this->addFlash('success','Service has been updated Successfully...');
             return $this->redirectToRoute('services_list');
         }
 

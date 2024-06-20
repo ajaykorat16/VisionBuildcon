@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\admin;
+namespace App\Controller\Admin;
 
 use App\Entity\Teams;
 use App\Form\SearchType;
@@ -67,8 +67,6 @@ class TeamController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $team->setTeamPhoto($form->get('teamPhoto')->getData());
-
             $this->entityManager->persist($team);
             $this->entityManager->flush();
 
@@ -86,14 +84,17 @@ class TeamController extends AbstractController
     #[Route('/edit/{id}', name: '_edit')]
     public function edit(Request $request, Teams $team):Response
     {
+        if (file_exists($team->getTeamPhoto())) {
+            unlink('image/' .$team->getTeamPhoto());
+            $team->setTeamPhoto(null);
+        }
+
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $team->setTeamPhoto($form->get('teamPhoto')->getData());
             $this->entityManager->flush();
-
             $this->addFlash('success','Team has Updated Successfully...');
 
             return $this->redirectToRoute('teams_list');

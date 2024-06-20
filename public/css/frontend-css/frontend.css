@@ -1,0 +1,19 @@
+.elementor-accordion .elementor-tab-title .elementor-accordion-icon .elementor-accordion-icon-opened, .elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-icon-closed {
+    display: none !important;
+}
+
+.elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-icon-opened {
+    display: block !important;
+}
+
+.elementor-element-8d1658f :hover {
+    cursor: pointer !important;
+}
+
+.margin-left{
+    margin-left: 35px;
+}
+
+.elementor-widget.elementor-align-left .elementor-icon-list-item a{
+    color: #f8b526 !important;
+}

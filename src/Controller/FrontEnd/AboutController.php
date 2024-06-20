@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\frontEnd;
+namespace App\Controller\FrontEnd;
 
 use App\Repository\ClientRepository;
 use App\Repository\TeamsRepository;
