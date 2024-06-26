@@ -21,10 +21,13 @@
                 <th>Description</th>
                 <td>{{ services.description }}</td>
             </tr>
+            {% if services.servicePhoto %}  
             <tr>
                 <th>Image</th>
                 <td><img src="{{ asset('image/' ~ services.servicePhoto) }}" width="100px" height="100px"></td>
             </tr>
+            {% endif %}
+
             </tbody>
         </table>
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller\FrontEnd;
 
+use App\Entity\Project;
 use App\Entity\Request as RequestEntity;
 use App\Form\RequestType;
 use App\Repository\ClientRepository;
@@ -49,12 +50,8 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/{name}', name: '_show')]
-    public function show(string $name): Response
+    public function show(Project $project): Response
     {
-        $originalName = str_replace('-','#' , $name);
-
-        $project = $this->projectRepository->findOneBy(['name' => $originalName]);
-
         return $this->render('front-end/project/show.html.twig', [
             'project' => $project,
         ]);

@@ -15,6 +15,7 @@ class ClientRepository extends ServiceEntityRepository
 {
     use BaseRepository;
     public const PAGE_SIZE = 10;
+    public const OFFSET = 0;
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -62,7 +63,7 @@ class ClientRepository extends ServiceEntityRepository
 
         return $qb;
     }
-    public function findAllActiveClients(int $offset = 0, ?int $count = null, $search = null): ArrayCollection
+    public function getActiveClients($search = null, ?int $count = null, int $offset = 0): ArrayCollection
     {
         $qb = $this->getAllActiveClients($search);
 
@@ -74,7 +75,7 @@ class ClientRepository extends ServiceEntityRepository
         return $this->paginateResults($qb, true, false);
     }
 
-    public function findAllActiveClientsCount()
+    public function getTotalCountClients()
     {
         return $this->createQueryBuilder('c')
             ->select('count(c.id)')

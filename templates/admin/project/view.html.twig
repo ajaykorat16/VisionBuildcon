@@ -21,6 +21,7 @@
                 <th>Description</th>
                 <td>{{ project.description }}</td>
             </tr>
+           {% if project.images %}
             <tr>
                 <th>Image</th>
 
@@ -31,6 +32,8 @@
                 {% endif %}
             {% endfor %}
             </tr>
+            {% endif %}
+
             </tbody>
         </table>
 

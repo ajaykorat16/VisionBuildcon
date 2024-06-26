@@ -17,10 +17,13 @@
                 <th>Name</th>
                 <td>{{ team.name }}</td>
             </tr>
+            {% if team.teamPhoto %}
             <tr>
                 <th>Image</th>
                 <td><img src="{{ asset('image/' ~ team.teamPhoto) }}" width="100px" height="100px"></td>
             </tr>
+            {% endif %}
+
             </tbody>
         </table>
 

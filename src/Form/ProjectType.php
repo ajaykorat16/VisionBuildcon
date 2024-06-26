@@ -24,8 +24,11 @@ class ProjectType extends AbstractType
            ->add('description', TextareaType::class,[
                'required' => true
            ])
-           ->add('images', HiddenType::class, [
+           ->add('hiddenimages', HiddenType::class, [
                'mapped' => false,
+               'attr' => [
+                'class' => 'form-control',
+            ],
            ])
            ->add('save', SubmitType::class, [
                'attr' => [

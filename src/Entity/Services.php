@@ -6,6 +6,7 @@ use App\Repository\ServicesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: ServicesRepository::class)]
 #[UniqueEntity(fields: ['name'], message: 'This name is already in use.')]
@@ -32,6 +33,10 @@ class Services
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeImmutable $deleted_at = null;
+
+    #[ORM\Column(length: 255)]
+    #[Gedmo\Slug(fields: ['name'])]
+    private ?string $slug = null;
 
     public function getId(): ?int
     {
@@ -94,6 +99,18 @@ class Services
     public function setDeletedAt(\DateTimeImmutable $deleted_at): self
     {
         $this->deleted_at = $deleted_at;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

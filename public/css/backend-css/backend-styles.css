@@ -2610,6 +2610,10 @@ textarea.form-control-lg {
   color: #198754;
 }
 
+.display-none{
+  display: none !important;
+}
+
 .valid-tooltip {
   position: absolute;
   top: 100%;

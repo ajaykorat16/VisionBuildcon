@@ -4,8 +4,8 @@
     <script src="{{ asset('js/backend-js/imageDropzone.js') }}"></script>
     <script>
         DropZone.dropzoneImage();
-        DropZone.initRemoveImages('.remove-client-image',"#images",'.client-images', '.image-upload');
-        DropZone.initRemovePhotos('.logo-remove','#client_logo');
+        DropZone.initRemoveImages('.remove-client-image', "#images", '.client-images', '.image-upload');
+        DropZone.initRemovePhotos('.logo-remove','#client_logo', '#old_photo');
     </script>
 {% endblock %}
 
@@ -32,15 +32,17 @@
                 {{ form_errors(form.description) }}
             </div>
             <div class="form-group mb-4 input-container">
-                {% if client.logo %}
+                {% if client is defined %}
                     <div class="photo-remove">
                         <div class="pb-4 ">
                             <img src="{{ asset('image/' ~ client.logo) }}" width="100px" height="100px">
                         </div>
                         <span class="btn-close image-main logo-remove top-2 right-19 box-sizing" aria-hidden="true"></span>
                     </div>
+                    <input type="hidden" name="old_photo" id="old_photo" value={{ client.logo }}>
+
                 {% endif %}
-                <div class="dropzone client-images form-control" id="images" data-picture-upload="{{ path('upload_logo') }}" data-form-id="edit-client-form">
+                <div class="dropzone client-images form-control" id="images" data-picture-upload="{{ path('image_upload') }}">
                     <img class="image-upload" src="{{ asset('img/picture-upload-placeholder.png') }}" width="50" />
                     <label class="select-photo-container">
                         <span class="select-file d-block">Select file</span>

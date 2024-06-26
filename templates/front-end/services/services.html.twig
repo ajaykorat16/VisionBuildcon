@@ -37,16 +37,17 @@
                                        </figure>
                                        <div class="elementor-image-box-content">
                                            <h3 class="elementor-image-box-title">{{ services.name }}</h3>
-                                           <p class="elementor-image-box-description">{{ services.description }}</p>
+                                           <p class="elementor-image-box-description">{{ services.description|length >50 ? services.description|slice(0,40) ~ '...' : services.description }}</p>
                                        </div>
                                    </div>
                                 </div>
                             </div>
                             <div class="elementor-element elementor-element-3484156 elementor-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="3484156" data-element_type="widget" data-widget_type="icon-list.default">
-                                <div class="elementor-widget-container">
+                                <div class="elementor-widget-container read-more">
                                     <ul class="elementor-icon-list-items">
                                         <li class="elementor-icon-list-item">
-                                            <a href="{{ path('services_show_service', {'name' : services.name}) }}">
+                                        {# {{ dump(services.slug) }} #}
+                                             <a href="{{ path('services_show_service', {'slug' : services.slug}) }}">
                                                 <span class="elementor-icon-list-icon">
                                                     <i aria-hidden="true" class="fas fa-long-arrow-alt-right"></i>
                                                 </span>

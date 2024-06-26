@@ -15,6 +15,7 @@ class ServicesRepository extends ServiceEntityRepository
 {
     use BaseRepository;
     public const PAGE_SIZE = 10;
+    public const OFFSET = 0;
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -63,7 +64,7 @@ class ServicesRepository extends ServiceEntityRepository
         return $qb;
     }
 
-    public function findAllActiveServices(int $offset = 0, ?int $count = null, $search = null): ArrayCollection
+    public function getActiveServices($search = null, ?int $count = null, int $offset = 0): ArrayCollection
     {
         $qb = $this->getAllActiveServices($search);
 
@@ -75,7 +76,7 @@ class ServicesRepository extends ServiceEntityRepository
         return $this->paginateResults($qb, true, false);
     }
 
-    public function findAllActiveServicesCount()
+    public function getTotalCountServices()
     {
         return $this->createQueryBuilder('s')
             ->select('count(s.id)')

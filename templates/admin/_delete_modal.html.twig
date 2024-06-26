@@ -3,15 +3,16 @@
         <div class="modal-content">
             <div class="modal-header modal-header-default">
                 <h5 class="modal-title">Delete</h5>
-                <span class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to delete <strong id="deleteName"></strong>?</p>
-                <input type="hidden" id="Id">
+                <input type="hidden" id="deleteId" name="id" value="">
+                <input type="hidden" id="deleteEntity" name="entity" value="">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default mr-10" data-bs-dismiss="modal">Close</button>
-                <button type="submit"  class="btn btn-danger" id="delete">Delete</button>
+                <a href="" class="btn btn-danger" id="deleteButton">Delete</a>
             </div>
         </div>
     </div>

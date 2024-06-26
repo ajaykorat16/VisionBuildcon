@@ -22,7 +22,7 @@ class HomeController extends AbstractController
     )
     {
     }
-    #[Route('/', name: '_index')]
+    #[Route('/', name: '_index',requirements: ['/' => '\d+'])]
     public function index(Request $request): Response
     {
         $requestEntity = new RequestEntity();

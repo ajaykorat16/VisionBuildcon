@@ -15,6 +15,7 @@ class RequestRepository extends ServiceEntityRepository
 {
     use BaseRepository;
     public const PAGE_SIZE = 12;
+    public const OFFSET = 12;
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -46,7 +47,7 @@ class RequestRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    public function findAllRequests(int $offset = 0, ?int $count = null): ArrayCollection
+    public function getRequests(?int $count = null, int $offset = 0): ArrayCollection
     {
         $qb = $this->createQueryBuilder('r');
         $qb->setFirstResult($offset);
@@ -57,7 +58,7 @@ class RequestRepository extends ServiceEntityRepository
         return $this->paginateResults($qb, true, false);
     }
 
-    public function findAllRequestsCount()
+    public function getTotalCountRequest()
     {
         return $this->createQueryBuilder('r')
             ->select('count(r.id)')

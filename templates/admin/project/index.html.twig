@@ -4,7 +4,6 @@
     <script src="{{ asset('js/backend-js/delete.js') }}"></script>
     <script type="text/javascript">
         Delete.onShowModal();
-        Delete.deleteProject();
     </script>
 {% endblock %}
 
@@ -39,7 +38,7 @@
             </tr>
             </thead>
             <!-- Table body -->
-            <tbody id="projects-list" data-total-items="{{ totalProjects ?? 0 }}">
+            <tbody id="projects-list" data-total-items="{{ totalProjects }}">
                 {% if project is not empty %}
                     {% for project in project %}
                         {% include 'admin/project/list-items.html.twig' %}

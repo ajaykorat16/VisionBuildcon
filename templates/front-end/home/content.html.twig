@@ -170,7 +170,7 @@
                                     </figure>
                                     <div class="elementor-image-box-content">
                                         <h3 class="elementor-image-box-title">{{ services.name }}</h3>
-                                        <p class="elementor-image-box-description">{{ services.description }}</p>
+                                        <p class="elementor-image-box-description">{{ services.description|length >50 ? services.description|slice(0,40) ~ '...' : services.description }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -293,9 +293,9 @@
                                 <div class="elementor-icon-box-wrapper">
                                     <div class="elementor-icon-box-content">
                                         <h3 class="elementor-icon-box-title">
-                                            <span>Canada </span>
+                                            <span>Ahmedabad </span>
                                         </h3>
-                                        <p class="elementor-icon-box-description">4446 Noble Rd, Cortes Island </p>
+                                        <p class="elementor-icon-box-description">Gota-382481 Ahmedabad, Gujarat </p>
                                     </div>
                                 </div>
                             </div>
@@ -303,7 +303,7 @@
                         <div class="elementor-element elementor-element-eede26c elementor-align-left elementor-widget elementor-widget-button" data-id="eede26c" data-element_type="widget" data-widget_type="button.default">
                             <div class="elementor-widget-container">
                                 <div class="elementor-button-wrapper">
-                                    <a class="elementor-button elementor-button-link elementor-size-sm" href="https://websitedemos.net/construction-company-02/#">
+                                    <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ path('contact_us_index') }}">
                                         <span class="elementor-button-content-wrapper">
                                             <span class="elementor-button-icon elementor-align-icon-right">
                                                 <i aria-hidden="true" class="fas fa-long-arrow-alt-right"></i>
@@ -315,7 +315,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="elementor-element elementor-element-ff18958 e-con-full e-flex e-con e-child" data-id="ff18958" data-element_type="container">
+                    {# <div class="elementor-element elementor-element-ff18958 e-con-full e-flex e-con e-child" data-id="ff18958" data-element_type="container">
                         <div class="elementor-element elementor-element-554a38f elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="554a38f" data-element_type="widget" data-widget_type="icon-box.default">
                             <div class="elementor-widget-container">
                                 <div class="elementor-icon-box-wrapper">
@@ -342,8 +342,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="elementor-element elementor-element-c28f1a9 e-con-full e-flex e-con e-child" data-id="c28f1a9" data-element_type="container">
+                    </div> #}
+                    {# <div class="elementor-element elementor-element-c28f1a9 e-con-full e-flex e-con e-child" data-id="c28f1a9" data-element_type="container">
                         <div class="elementor-element elementor-element-20dba6c elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="20dba6c" data-element_type="widget" data-widget_type="icon-box.default">
                             <div class="elementor-widget-container">
                                 <div class="elementor-icon-box-wrapper">
@@ -370,12 +370,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> #}
                 </div>
                 <div class="elementor-element elementor-element-d14cf69 elementor-align-center elementor-widget elementor-widget-button" data-id="d14cf69" data-element_type="widget" data-widget_type="button.default">
                     <div class="elementor-widget-container">
                         <div class="elementor-button-wrapper">
-                            <a class="elementor-button elementor-button-link elementor-size-sm" href="https://websitedemos.net/construction-company-02/#">
+                            <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ path('contact_us_index') }}">
                                 <span class="elementor-button-content-wrapper">
                                  <span class="elementor-button-text">View Our Offices</span>
                                 </span>

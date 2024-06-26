@@ -26,36 +26,36 @@ class ServicesController extends AbstractController
     #[Route('/', name: '_list')]
     public function index(Request $request):Response
     {
-        $form = $this->createForm(SearchType::class);
-        $form->handleRequest($request);
+        $searchForm = $this->createForm(SearchType::class);
+        $searchForm->handleRequest($request);
 
-        $search = $form->get('search')->getData();
+        $searchData = $searchForm->get('search')->getData();
 
-        $services = $this->servicesRepository->findAllActiveServices(
-            0,
+        $services = $this->servicesRepository->getActiveServices(
+            $searchData,
             ServicesRepository::PAGE_SIZE,
-            $search
+            ServicesRepository::OFFSET,
         );
 
         return $this->render('admin/services/index.html.twig',[
             'services' => $services,
-            'totalServices' => $this->servicesRepository->findAllActiveServicesCount(),
-            'search' => $form->createView()
+            'totalServices' => $this->servicesRepository->getTotalCountServices(),
+            'search' => $searchForm->createView()
         ]);
     }
 
     #[Route('/load-more', name: '_load_more', options: ['expose' => true])]
-    public function loadMore(Request $request): Response
+    public function loadMore(Request $request): JsonResponse
     {
         $offset = (int) $request->query->get('offset');
-        $services = $this->servicesRepository->findAllActiveServices($offset, ServicesRepository::PAGE_SIZE);
-        $content = '';
+        $services = $this->servicesRepository->getActiveServices(null, ServicesRepository::PAGE_SIZE, $offset);
+        $content = [];
 
         foreach ($services as $service) {
-            $content .= $this->renderView('admin/project/list-items.html.twig', ['service' => $service]);
+            $content[] = $this->renderView('admin/project/list-items.html.twig', ['services' => $service]);
         }
 
-        return new Response($content);
+        return new JsonResponse(['content' => $content], JsonResponse::HTTP_OK);
     }
 
     #[Route('/create', name: '_create')]
@@ -71,41 +71,55 @@ class ServicesController extends AbstractController
             $this->entityManager->persist($service);
             $this->entityManager->flush();
 
-            $this->addFlash('success','New Service has Created Successfully...');
+            $this->addFlash('success','New Service has been Created Successfully.');
             return $this->redirectToRoute('services_list');
         }
 
         return $this->render('admin/services/create.html.twig',[
-            'form' => $form->createView(),
-            'service' => $service
+            'form' => $form->createView()
         ]);
     }
 
     #[Route('/edit/{id}', name: '_edit')]
-    public function edit(Request $request, Services $service):Response
-    {
-        if (file_exists($service->getServicePhoto())) {
-            unlink('image/' .$service->getServicePhoto() );
-            $service->setServicePhoto(null);
-        }
-
+    public function edit(Request $request, Services $service): Response
+    {    
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $old_image = $request->request->get('old_photo');
+            $new_image = $form->get('servicePhoto')->getData();
+
+            if ($new_image) {
+                if($old_image != $new_image){
+
+                    $filePath = 'image/' . $old_image;
+
+                    if (!empty($old_image) && file_exists($filePath)) {
+                        unlink($filePath);
+                    }
+                }
+
+                $service->setServicePhoto($new_image);
+
+            }elseif($old_image){  
+
+                $service->setServicePhoto($old_image);  
+            }
 
             $this->entityManager->flush();
-
-            $this->addFlash('success','Service has been updated Successfully...');
+    
+            $this->addFlash('success', 'Service has been updated successfully.');
             return $this->redirectToRoute('services_list');
         }
-
-        return $this->render('admin/services/create.html.twig',[
+    
+        return $this->render('admin/services/create.html.twig', [
             'form' => $form->createView(),
-            'service' => $service
+            'service' => $service,
         ]);
     }
-
+    
     #[Route('/show/{id}', name: '_show')]
     public function show(Services $service): Response
     {
@@ -114,14 +128,14 @@ class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name: '_delete' ,  options: ['expose' => true])]
-    public function delete(Services $service): JsonResponse
+    #[Route('/delete/{id}', name: '_delete')]
+    public function delete(Services $service): Response
     {
         $service->setDeletedAt(new \DateTimeImmutable());
         $this->entityManager->flush();
 
-        $this->addFlash('success', 'Services has been deleted.');
+        $this->addFlash('success', 'Services has been deleted successfully.');
 
-        return new JsonResponse(['status' => 'ok', 'message' => 'Service has been deleted.']);
+        return $this->redirectToRoute('services_list');
     }
 }

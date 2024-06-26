@@ -90,16 +90,18 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                {% for success in app.flashes('success') %}
-                    <div class="alert alert-success text-center">
-                        {{ success }}
-                    </div>
-                {% endfor %}
-                {% for warning in app.flashes('warning') %}
-                    <div class="alert alert-danger text-center">
-                        {{ warning }}
-                    </div>
-                {% endfor %}
+               <div class="flash-messages">
+                    {% for success in app.flashes('success') %}
+                        <div class="alert alert-success text-center">
+                            {{ success }}
+                        </div>
+                    {% endfor %}
+                    {% for warning in app.flashes('warning') %}
+                        <div class="alert alert-danger text-center">
+                            {{ warning }}
+                        </div>
+                    {% endfor %}
+                </div>
                 <main>
                     <div class="container-fluid px-4">
 

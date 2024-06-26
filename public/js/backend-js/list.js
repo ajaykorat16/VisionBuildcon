@@ -4,12 +4,11 @@ var Main = Main || {};
 (function($, module) {
 
 //----------- projectList-load-more ---------------//
-    $(window).on('scroll', function () {
+    $(window).on('scroll', function() {
         let $table = $("#projectsList");
         let totalItems = $("#projects-list").data('total-items');
         let url = 'projects_load_more';
-        module.listingLoader($table, totalItems,url);
-
+        module.listingLoader($table, totalItems, url);
     });
 //----------- /projectList-load-more ---------------//
 
@@ -53,18 +52,18 @@ var Main = Main || {};
     });
 //----------- /request-load-more ---------------//
 
-module.listingLoader = function ($table,totalItems,url) {
+module.listingLoader = function($table, totalItems, url) {
     let scrolled = window.scrollY;
     let availableScroll = Math.max($(document).height() - $(window).height(), 0);
     let scrollPercentage = Math.round(scrolled / availableScroll * 100);
 
-    if (scrollPercentage > 90 && !loadingMore ) {
+    if (scrollPercentage > 90 && !loadingMore) {
         let loadedItems = $table.find('tbody tr:not(.no-results-row)').length;
         let hasMore = totalItems > loadedItems;
 
         if (hasMore) {
             loadingMore = true;
-            const loadMoreUrl = Routing.generate(url, {offset: loadedItems});
+            const loadMoreUrl = Routing.generate(url, { offset: loadedItems });
 
             $(".loading-image").removeClass("visibility-hidden");
 
@@ -73,14 +72,18 @@ module.listingLoader = function ($table,totalItems,url) {
                     return window.location.reload();
                 }
 
-                if (data.length > 0) {
-                    $table.find('tbody').append(data)
+                if (data.content && data.content.length > 0) {
+                    data.content.forEach(function(html) {
+                        $table.find('tbody').append(html);
+                    });
                 }
 
                 loadingMore = false;
-
                 $(".loading-image").addClass("visibility-hidden");
-            }).fail(function (xhr, status, error) {
+            }).fail(function(xhr, status, error) {
+                console.error("Error loading more projects:", error);
+                loadingMore = false;
+                $(".loading-image").addClass("visibility-hidden");
             });
         }
     }

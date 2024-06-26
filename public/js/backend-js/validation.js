@@ -14,11 +14,11 @@ var Main = Main || {};
         $(document).on("click", saveBtn, function (e) {
             e.preventDefault();
 
-            const $name = $(nameSelector);
+            const $name = nameSelector ? $(nameSelector) : null;
             const $textarea = descSelector ? $(descSelector) : null;
 
             const isValid = module.validate($textarea, $name);
-            console.log(isValid);
+
             if (isValid) {
                 $(this).closest('form').submit();
             }
@@ -35,7 +35,7 @@ var Main = Main || {};
 
     module.validate = function ($textarea, $name) {
         let isValid = true;
-        console.log(isValid);
+
         if ($textarea && !$textarea.val()) {
             $textarea.addClass("is-invalid");
             isValid = false;
@@ -49,7 +49,6 @@ var Main = Main || {};
         } else {
             $name.removeClass("is-invalid");
         }
-        console.log(isValid);
 
         return isValid;
     };

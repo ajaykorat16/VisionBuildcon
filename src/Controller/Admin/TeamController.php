@@ -26,35 +26,36 @@ class TeamController extends AbstractController
     #[Route('/', name: '_list')]
     public function index(Request $request):Response
     {
-        $form = $this->createForm(SearchType::class);
-        $form->handleRequest($request);
+        $searchForm = $this->createForm(SearchType::class);
+        $searchForm->handleRequest($request);
 
-        $search = $form->get('search')->getData();
+        $searchData = $searchForm->get('search')->getData();
 
-        $teams = $this->teamRepository->findAllActiveTeams(
-            0,
+        $teams = $this->teamRepository->getActiveTeam(
+            $searchData,
             TeamsRepository::PAGE_SIZE,
-            $search
+            TeamsRepository::OFFSET
         );
+
         return $this->render('admin/team/index.html.twig',[
             'teams' => $teams,
-            'totalTeams' => $this->teamRepository->findAllActiveTeamsCount(),
-            'search' => $form->createView()
+            'totalTeams' => $this->teamRepository->getTotalCountTeam(),
+            'search' => $searchForm->createView()
         ]);
     }
 
     #[Route('/load-more', name: '_load_more' , options: ['expose' => true])]
-    public function loadMore(Request $request): Response
+    public function loadMore(Request $request): JsonResponse
     {
         $offset = (int) $request->query->get('offset');
-        $teams = $this->teamRepository->findAllActiveTeams($offset, TeamsRepository::PAGE_SIZE);
-        $content = '';
+        $teams = $this->teamRepository->getActiveTeam(null, TeamsRepository::PAGE_SIZE, $offset);
+        $content = [];
 
         foreach ($teams as $team) {
-            $content .= $this->renderView('admin/team/list-items.html.twig', ['team' => $team]);
+            $content[] = $this->renderView('admin/team/list-items.html.twig', ['team' => $team]);
         }
 
-        return new Response($content);
+        return new JsonResponse(['content' => $content], JsonResponse::HTTP_OK);
     }
 
     #[Route('/create', name: '_create')]
@@ -70,32 +71,47 @@ class TeamController extends AbstractController
             $this->entityManager->persist($team);
             $this->entityManager->flush();
 
-            $this->addFlash('success','New team has Created Successfully...');
+            $this->addFlash('success','New team has been created successfully.');
 
             return $this->redirectToRoute('teams_list');
         }
 
         return $this->render('admin/team/create.html.twig',[
-            'form' => $form->createView(),
-            'team' => $team
+            'form' => $form->createView()
         ]);
     }
 
     #[Route('/edit/{id}', name: '_edit')]
     public function edit(Request $request, Teams $team):Response
     {
-        if (file_exists($team->getTeamPhoto())) {
-            unlink('image/' .$team->getTeamPhoto());
-            $team->setTeamPhoto(null);
-        }
-
+    
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $old_image = $request->request->get('remove_photo');
+            $new_image = $form->get('teamPhoto')->getData();
+
+            if ($new_image) {
+                if($old_image != $new_image)
+                {
+                    $filePath = 'image/' . $old_image;
+
+                    if (!empty($old_image) && file_exists($filePath)) {
+                        unlink($filePath);
+                    }
+                }
+
+                $team->setTeamPhoto($new_image);
+
+            }elseif($old_image){  
+
+                $team->setTeamPhoto($old_image);  
+            }
+
             $this->entityManager->flush();
-            $this->addFlash('success','Team has Updated Successfully...');
+            $this->addFlash('success','Team has been Updated Successfully.');
 
             return $this->redirectToRoute('teams_list');
         }
@@ -114,14 +130,14 @@ class TeamController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name: '_delete', options: ['expose' => true])]
-    public function delete(Teams $team): JsonResponse
+    #[Route('/delete/{id}', name: '_delete')]
+    public function delete(Teams $team): Response
     {
         $team->setDeletedAt(new \DateTimeImmutable());
         $this->entityManager->flush();
 
-        $this->addFlash('success', 'Team has been deleted.');
+        $this->addFlash('success', 'Team has been deleted successfully.');
 
-        return new JsonResponse(['status' => 'ok', 'message' => 'Team has been deleted.']);
+        return $this->redirectToRoute('teams_list');
     }
 }

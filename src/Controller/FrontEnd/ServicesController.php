@@ -6,7 +6,6 @@ use App\Entity\Request as RequestEntity;
 use App\Entity\Services;
 use App\Form\RequestType;
 use App\Repository\ClientRepository;
-use App\Repository\ProjectRepository;
 use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -56,7 +55,7 @@ class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/{name}', name: '_show_service')]
+    #[Route('/{slug}', name: '_show_service', requirements: ['slug' => '.+'])]
     public function showService(Services $services): Response
     {
         return $this->render('front-end/services/show.html.twig', [

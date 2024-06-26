@@ -16,6 +16,7 @@ class TeamsRepository extends ServiceEntityRepository
     use BaseRepository;
 
     public const PAGE_SIZE = 10;
+    public const OFFSET = 0;
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -63,7 +64,7 @@ class TeamsRepository extends ServiceEntityRepository
         return $qb;
     }
 
-    public function findAllActiveTeams(int $offset = 0, ?int $count = null, $search = null): ArrayCollection
+    public function getActiveTeam($search = null, ?int $count = null, int $offset = 0): ArrayCollection
     {
         $qb = $this->getAllActiveTeams($search);
 
@@ -75,7 +76,7 @@ class TeamsRepository extends ServiceEntityRepository
         return $this->paginateResults($qb, true, false);
     }
 
-    public function findAllActiveTeamsCount()
+    public function getTotalCountTeam()
     {
         return $this->createQueryBuilder('t')
             ->select('count(t.id)')

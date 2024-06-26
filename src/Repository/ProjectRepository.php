@@ -15,6 +15,8 @@ class ProjectRepository extends ServiceEntityRepository
 {
     use BaseRepository;
     public const PAGE_SIZE = 10;
+    public const OFFSET = 0;
+
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -62,7 +64,7 @@ class ProjectRepository extends ServiceEntityRepository
 
         return $qb;
     }
-    public function findAllActiveProjects(int $offset = 0, ?int $count = null, $search = null): ArrayCollection
+    public function getActiveProjects($search = null, ?int $count = null, int $offset = 0): ArrayCollection
     {
         $qb = $this->getAllActiveProjects($search);
 
@@ -71,10 +73,11 @@ class ProjectRepository extends ServiceEntityRepository
         if ($count !== null) {
             $qb->setMaxResults($count);
         }
+
         return $this->paginateResults($qb, true, false);
     }
 
-    public function findAllActiveProjectsCount()
+    public function getTotalCountsProjects()
     {
         return $this->createQueryBuilder('p')
             ->select('count(p.id)')
