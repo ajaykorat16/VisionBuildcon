@@ -22,31 +22,6 @@ class ServicesRepository extends ServiceEntityRepository
         parent::__construct($registry, Services::class);
     }
 
-    //    /**
-    //     * @return Services[] Returns an array of Services objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('s.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Services
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
-
     public function getAllActiveServices($search): QueryBuilder
     {
         $qb = $this->createQueryBuilder('s');
@@ -85,7 +60,7 @@ class ServicesRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-    public function findActiveServices()
+    public function getServices()
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.deleted_at IS NULL')

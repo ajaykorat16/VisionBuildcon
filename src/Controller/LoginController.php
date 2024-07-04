@@ -11,12 +11,13 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
-    public function __construct(private readonly Security $security,) {
-
+    public function __construct(
+        private readonly Security $security,
+    ){
     }
 
     #[Route('/login', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils):Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
         $this->denyAccessUnlessGranted('PUBLIC_ACCESS');
 

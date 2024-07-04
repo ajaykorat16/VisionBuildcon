@@ -20,6 +20,14 @@ $(document).ready(function() {
         });
     }
 
+    var flashMessages = $('.flash-messages .alert');
+    
+    if (flashMessages.length > 0) {
+        setTimeout(function() {
+            flashMessages.hide();
+        }, 5000);
+    }
+    
     //------------------- front-end header-------------------------//
     const $navbarLinks = $('.site-navigation .menu-item-object-page');
 

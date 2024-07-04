@@ -22,31 +22,6 @@ class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
-    //    /**
-    //     * @return Client[] Returns an array of Client objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Client
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
-
     public function getAllActiveClients($search):QueryBuilder
     {
         $qb = $this->createQueryBuilder('c');
@@ -84,20 +59,10 @@ class ClientRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-    public function findActiveClients()
+    public function getClients()
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.deletedAt IS NULL')
             ->getQuery()->getResult();
     }
-
-//    public function findByClientPhotos($id) :QueryBuilder
-//    {
-//        return  $this->createQueryBuilder('c');
-//           ->select('c.logo')
-//                ->andWhere('c.id = :val')
-//                ->setParameter('val', '%' .$id. '%')
-//                ->getQuery()
-//                ->getOneOrNullResult();
-//    }
 }

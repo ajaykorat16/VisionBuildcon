@@ -12,11 +12,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TeamType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options):void
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
     {
         $builder
             ->add('name', TextType::class)
-
             ->add('teamPhoto',HiddenType::class,[
                 'data_class' => null,
                 'label' => false,

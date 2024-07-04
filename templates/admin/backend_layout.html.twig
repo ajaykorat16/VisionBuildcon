@@ -9,8 +9,7 @@
         <meta name="author" content="" />
         <title>Vision Buildcon</title>
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/real-estate-logo.png') }}">
-        <link href="{{ asset('css/backend-css/backend-styles.css') }}" rel="stylesheet" media="screen">
-        <link href="{{ asset('css/backend-css/styles.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ asset('css/admin/styles.css') }}" rel="stylesheet" media="screen">
         <link href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
         <link href="{{ asset('fontawesome-6.4.2/css/all.css') }}">
         <link href="{{ asset('css/dropzone/dropzone.min.css') }}">
@@ -18,17 +17,19 @@
     {% endblock %}
 
     <script src="{{ asset('bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/backend-js/scripts.js') }}"></script>
-    <script src="{{ asset('js/backend-js/datatables-simple-demo.js') }}"></script>
+    <script src="{{ asset('js/admin/scripts.js') }}"></script>
+    <script src="{{ asset('js/admin/datatables-simple-demo.js') }}"></script>
     <script src="{{ asset('js/jquery3.7.1.js') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('fontawesome-6.4.2/js/all.js') }}"></script>
-    <script src="{{ asset('js/backend-js/header.js') }}"></script>
+    <script src="{{ asset('js/admin/header.js') }}"></script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}">
     <script src="{{ asset('js/dropzone-min.js') }}"></script>
     <script src="{{ asset('js/dropzone.js') }}"></script>
-    <script src="{{ asset('js/backend-js/validation.js') }}"></script>
-    <script src="{{ asset('js/backend-js/list.js') }}"></script>
+    <script src="{{ asset('js/admin/validation.js') }}"></script>
+    <script src="{{ asset('js/admin/list.js') }}"></script>
+    <script src="{{ asset('js/admin/imageDropzone.js') }}"></script>
+    <script src="{{ asset('js/admin/delete.js') }}"></script>
 
     {% block javascripts %}
     {% endblock %}
@@ -38,12 +39,11 @@
     {% endblock %}
     </head>
 
-    <body class="sb-nav-fixed">
-
+   <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <img type="image/x-icon" src="{{ asset('img/real-estate-logo.png') }}" class="real-estate-logo">
-            <a class="navbar-brand ps-3" href="">Vision Buildcon</a>
+            <a class="navbar-brand ps-3" href="{{ path('projects_list')}}">Vision Buildcon</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -66,15 +66,15 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link" href="{{ path('projects_list') }}" id="project-header">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
                                 Project
                             </a>
                             <a class="nav-link collapsed" href="{{ path('clients_list') }}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 Client
                             </a>
                             <a class="nav-link collapsed" href="{{ path('teams_list') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Team
                             </a>
                             <a class="nav-link" href="{{ path('services_list') }}">
@@ -90,7 +90,7 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-               <div class="flash-messages">
+                <div class="flash-messages">
                     {% for success in app.flashes('success') %}
                         <div class="alert alert-success text-center">
                             {{ success }}
@@ -104,7 +104,6 @@
                 </div>
                 <main>
                     <div class="container-fluid px-4">
-
                         {% block body %}
                         {% endblock %}
                     </div>

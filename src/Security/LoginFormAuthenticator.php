@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException; // Correct import
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
@@ -20,10 +21,19 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
-    {
+
+    public function __construct(
+        private UrlGeneratorInterface $urlGenerator
+    ){
     }
 
+    public function start(Request $request, AuthenticationException $authException = null): Response // Correct type hint
+    {
+        $request->getSession()->getFlashBag()->add('warning', 'Please log in first.');
+
+        return new RedirectResponse($this->urlGenerator->generate(self::LOGIN_ROUTE));
+    }
+    
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('_username', '');
@@ -35,7 +45,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
-
         );
     }
 
@@ -43,9 +52,10 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     {
         $session = $request->getSession();
 
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {            
             return new RedirectResponse($targetPath);
         }
+
         $session->getFlashBag()->add('success', 'You have successfully logged in.');
 
         return new RedirectResponse($this->urlGenerator->generate('projects_list'));
@@ -55,6 +65,4 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
-
-
 }

@@ -23,13 +23,12 @@ $(document).ready(function() {
             success: function(response) {
                 var responseHtml = $(response);
                 var newFormHtml = responseHtml.find('#request-form').html();
-                var successMessage = responseHtml.find('#flash-messages').html();
+                var successMessage = responseHtml.find('.flash-messages').html();
                 var errorMessages = responseHtml.find('#error-email').html();
 
                 $form.html(newFormHtml);
-                console.log(responseHtml);
                 if (successMessage && successMessage.trim().length > 0) {
-                    $('#flash-messages').html(successMessage).fadeIn();
+                    $('.flash-messages').html(successMessage).fadeIn();
                     scrollToSuccessMessage();
                 } else if (errorMessages && errorMessages.trim().length > 0) {
                     scrollToForm();
@@ -38,14 +37,13 @@ $(document).ready(function() {
                 }
             },
             error: function(response) {
-                console.log('AJAX error response:', response); // Log the error response for debugging
                 alert('An error occurred. Please try again.');
             }
         });
     });
 
     function scrollToSuccessMessage() {
-        var successMessage = $('#flash-messages');
+        var successMessage = $('.flash-messages');
         if (successMessage.length > 0) {
             $('html, body').animate({
                 scrollTop: successMessage.offset().top

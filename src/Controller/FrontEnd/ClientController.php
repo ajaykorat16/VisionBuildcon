@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/client', name: 'client')]
 class ClientController extends AbstractController
 {
-    #[Route('/{name}', name: '_show')]
+    #[Route('/{slug}', name: '_show')]
     public function showClient(Client $client): Response
     {
         return $this->render('front-end/client/show.html.twig', [

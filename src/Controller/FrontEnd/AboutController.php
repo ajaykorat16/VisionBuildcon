@@ -14,16 +14,15 @@ class AboutController extends AbstractController
     public function __construct(
         private readonly TeamsRepository $teamsRepository,
         private readonly ClientRepository $clientRepository
-    )
-    {
+    ){
     }
 
     #[Route('', name: '_index')]
     public function index(): Response
     {
         return $this->render('front-end/aboutUs/about.html.twig',[
-            'team' => $this->teamsRepository->findActiveTeams(),
-            'client' => $this->clientRepository->findActiveClients()
+            'team' => $this->teamsRepository->getActiveTeams(),
+            'client' => $this->clientRepository->getClients()
         ]);
     }
 }

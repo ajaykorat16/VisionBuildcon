@@ -20,8 +20,7 @@ class ProjectController extends AbstractController
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly ProjectRepository $projectRepository,
-    )
-    {
+    ){
     }
 
     #[Route('/', name: '_list')]
@@ -37,6 +36,7 @@ class ProjectController extends AbstractController
             ProjectRepository::PAGE_SIZE,
             ProjectRepository::OFFSET
         );
+        
         return $this->render('admin/project/index.html.twig', [
             'project' => $projects,
             'totalProjects' => $this->projectRepository->getTotalCountsProjects(),
@@ -93,7 +93,6 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: '_edit')]
-
     public function edit(Request $request, Project $project): Response
     {
         $form = $this->createForm(ProjectType::class, $project);
@@ -128,7 +127,7 @@ class ProjectController extends AbstractController
 
             $this->entityManager->flush();
 
-            $this->addFlash('success', 'Project has been updated successfully.');
+            $this->addFlash('success', sprintf('Project %d has been updated successfully.', $project->getId()));
 
             return $this->redirectToRoute('projects_list');
         }
@@ -153,9 +152,8 @@ class ProjectController extends AbstractController
         $project->setDeletedAt(new \DateTimeImmutable());
         $this->entityManager->flush();
 
-        $this->addFlash('success', 'Project has been deleted successfully.');
+        $this->addFlash('success', sprintf('Project %s has been deleted successfully.', $project->getName()));
         
         return $this->redirectToRoute('projects_list');
-    }
-    
+    } 
 }

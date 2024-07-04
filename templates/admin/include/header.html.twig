@@ -1,0 +1,76 @@
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <img type="image/x-icon" src="{{ asset('img/real-estate-logo.png') }}" class="real-estate-logo">
+        <a class="navbar-brand ps-3" href="{{ path('projects_list')}}">Vision Buildcon</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link" href="{{ path('projects_list') }}" id="project-header">
+                            <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
+                            Project
+                        </a>
+                        <a class="nav-link collapsed" href="{{ path('clients_list') }}" >
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                            Client
+                        </a>
+                        <a class="nav-link collapsed" href="{{ path('teams_list') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Team
+                        </a>
+                        <a class="nav-link" href="{{ path('services_list') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Services
+                        </a>
+                        <a class="nav-link" href="{{ path('request_list') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-code-pull-request"></i></div>
+                            Requests
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <div class="flash-messages">
+                {% for success in app.flashes('success') %}
+                    <div class="alert alert-success text-center">
+                        {{ success }}
+                    </div>
+                {% endfor %}
+                {% for warning in app.flashes('warning') %}
+                    <div class="alert alert-danger text-center">
+                        {{ warning }}
+                    </div>
+                {% endfor %}
+            </div>
+            <main>
+                <div class="container-fluid px-4">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>

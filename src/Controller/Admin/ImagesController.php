@@ -39,20 +39,4 @@ class ImagesController extends AbstractController
         return new JsonResponse(['status' => 'OK','images' =>  $imageEntities], Response::HTTP_OK);
     }
 
-
-    // #[Route('/remove-image/{imageId}', name: 'project_remove_image', options: ['expose' => true ])]
-    // public function removeImage(int $imageId): JsonResponse
-    // {
-    //     $image = $this->imagesRepository->find($imageId);
-
-    //     if ($image) {
-    //         unlink('image/'. $image->getImage());
-    //         $this->entityManager->remove($image);
-    //         // $this->entityManager->flush();
-    //         return new JsonResponse(['status' => 'success'], Response::HTTP_OK);
-    //     }
-
-    //     return new JsonResponse(['status' => 'error', 'message' => 'Image not found'], Response::HTTP_NOT_FOUND);
-    // }
-
 }

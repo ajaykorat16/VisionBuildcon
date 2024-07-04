@@ -19,8 +19,7 @@ class ServicesController extends AbstractController
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly ServicesRepository $servicesRepository
-    )
-    {
+    ){
     }
 
     #[Route('/', name: '_list')]
@@ -110,7 +109,7 @@ class ServicesController extends AbstractController
 
             $this->entityManager->flush();
     
-            $this->addFlash('success', 'Service has been updated successfully.');
+            $this->addFlash('success', sprintf('Service %d has been updated successfully.', $service->getId()));
             return $this->redirectToRoute('services_list');
         }
     
@@ -134,7 +133,7 @@ class ServicesController extends AbstractController
         $service->setDeletedAt(new \DateTimeImmutable());
         $this->entityManager->flush();
 
-        $this->addFlash('success', 'Services has been deleted successfully.');
+        $this->addFlash('success', sprintf('Services %s has been deleted successfully.', $service->getName()));
 
         return $this->redirectToRoute('services_list');
     }

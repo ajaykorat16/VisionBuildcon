@@ -1,20 +1,27 @@
-<div class="elementor-image-carousel swiper-wrapper" id="swiper-wrapper-43105d6896ef3dbf5" style="transform: translate3d(-1500px, 0px, 0px); transition-duration: 0ms;">
-    {% for clients in client %}
-    <a href="{{ path('client_show' , {'name' : clients.name}) }}" class="swiper-slide " role="group" aria-roledescription="slide" aria-label="2 / 5" data-swiper-slide-index="1" aria-hidden="true" inert="" style="width: 300px;">
-    <div>
-        <figure class="swiper-slide-inner"><img decoding="async" class="swiper-slide-image" src="{{ asset('image/' ~ clients.logo) }}" alt="logo-2 1" width="100">
-        </figure>
+{% if client|length == 1 %}
+    <div class="single-image">
+        <a href="{{ path('client_show', {'slug': client[0].slug}) }}" class="single-image-slide">
+            <figure class="single-image-inner">
+                <img decoding="async" class="single-image-photo" src="{{ asset('image/' ~ client[0].logo) }}" alt="{{ client[0].name }}" width="100">
+            </figure>
+        </a>
     </div>
-    </a>
-    {% endfor %}
-</div>
-<div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
-    <span class="swiper-pagination-bullet" data-bullet-index="0" aria-label="Go to slide 1"></span>
-    <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-bullet-index="1" aria-label="Go to slide 2" tabindex="0" aria-current="true"></span>
-    <span class="swiper-pagination-bullet" data-bullet-index="2" aria-label="Go to slide 3"></span>
-    <span class="swiper-pagination-bullet" data-bullet-index="3" aria-label="Go to slide 4"></span>
-    <span class="swiper-pagination-bullet" data-bullet-index="4" aria-label="Go to slide 5"></span>
-</div>
-<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-
-
+{% else %}
+    <div class="elementor-image-carousel swiper-wrapper" id="swiper-wrapper-43105d6896ef3dbf5" style="transform: translate3d(-1500px, 0px, 0px); transition-duration: 0ms;">
+        {% for clients in client %}
+            <a href="{{ path('client_show', {'slug': clients.slug}) }}" class="swiper-slide" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} / {{ client|length }}" data-swiper-slide-index="{{ loop.index0 }}" aria-hidden="{{ loop.index0 != 1 }}" inert="" style="width: 300px;">
+                <div>
+                    <figure class="swiper-slide-inner">
+                        <img decoding="async" class="swiper-slide-image" src="{{ asset('image/' ~ clients.logo) }}" alt="{{ clients.name }}" width="100">
+                    </figure>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+        {% for i in 0..(client|length - 1) %}
+            <span class="swiper-pagination-bullet {{ i == 1 ? 'swiper-pagination-bullet-active' : '' }}" data-bullet-index="{{ i }}" aria-label="Go to slide {{ i + 1 }}" {% if i == 1 %}tabindex="0" aria-current="true"{% endif %}></span>
+        {% endfor %}
+    </div>
+    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+{% endif %}

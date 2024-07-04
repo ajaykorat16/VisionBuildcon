@@ -110,8 +110,8 @@ class ClientController extends AbstractController
 
             $this->entityManager->flush();
 
-            $this->addFlash('success', 'Client has been updated successfully.');
-
+            $this->addFlash('success', sprintf('Client %d has been updated successfully.', $client->getId()));
+            
             return $this->redirectToRoute('clients_list');
         }
 
@@ -135,7 +135,7 @@ class ClientController extends AbstractController
         $client->setDeletedAt(new \DateTime());
         $this->entityManager->flush();
 
-        $this->addFlash('success', 'Client has been deleted successfully.');
+        $this->addFlash('success', sprintf('Client %s has been deleted successfully.', $client->getName()));
 
         return $this->redirectToRoute('clients_list');
     }

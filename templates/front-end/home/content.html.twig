@@ -54,7 +54,7 @@
                 <div class="elementor-element elementor-element-b164ba8 elementor-widget elementor-widget-button" data-id="b164ba8" data-element_type="widget" data-widget_type="button.default">
                     <div class="elementor-widget-container">
                         <div class="elementor-button-wrapper">
-                            <a class="elementor-button elementor-button-link elementor-size-sm" href="https://websitedemos.net/construction-company-02/#">
+                            <a class="elementor-button elementor-button-link elementor-size-sm" href="#">
                                 <span class="elementor-button-content-wrapper">
                                     <span class="elementor-button-text">Work With Us</span>
                                 </span>
@@ -315,62 +315,6 @@
                             </div>
                         </div>
                     </div>
-                    {# <div class="elementor-element elementor-element-ff18958 e-con-full e-flex e-con e-child" data-id="ff18958" data-element_type="container">
-                        <div class="elementor-element elementor-element-554a38f elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="554a38f" data-element_type="widget" data-widget_type="icon-box.default">
-                            <div class="elementor-widget-container">
-                                <div class="elementor-icon-box-wrapper">
-                                    <div class="elementor-icon-box-content">
-                                        <h3 class="elementor-icon-box-title">
-                                            <span>United States </span>
-                                        </h3>
-                                        <p class="elementor-icon-box-description">2367 Speers Road, Brampton </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="elementor-element elementor-element-0d2cfb4 elementor-align-left elementor-widget elementor-widget-button" data-id="0d2cfb4" data-element_type="widget" data-widget_type="button.default">
-                            <div class="elementor-widget-container">
-                                <div class="elementor-button-wrapper">
-                                    <a class="elementor-button elementor-button-link elementor-size-sm" href="https://websitedemos.net/construction-company-02/#">
-                                        <span class="elementor-button-content-wrapper">
-                                            <span class="elementor-button-icon elementor-align-icon-right">
-                                                <i aria-hidden="true" class="fas fa-long-arrow-alt-right"></i>
-                                            </span>
-                                            <span class="elementor-button-text">Direction</span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> #}
-                    {# <div class="elementor-element elementor-element-c28f1a9 e-con-full e-flex e-con e-child" data-id="c28f1a9" data-element_type="container">
-                        <div class="elementor-element elementor-element-20dba6c elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="20dba6c" data-element_type="widget" data-widget_type="icon-box.default">
-                            <div class="elementor-widget-container">
-                                <div class="elementor-icon-box-wrapper">
-                                    <div class="elementor-icon-box-content">
-                                        <h3 class="elementor-icon-box-title">
-                                            <span>Australia </span>
-                                        </h3>
-                                        <p class="elementor-icon-box-description">3851 49th Avenue, Kugluktuk </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="elementor-element elementor-element-2027dd8 elementor-align-left elementor-widget elementor-widget-button" data-id="2027dd8" data-element_type="widget" data-widget_type="button.default">
-                            <div class="elementor-widget-container">
-                                <div class="elementor-button-wrapper">
-                                    <a class="elementor-button elementor-button-link elementor-size-sm" href="https://websitedemos.net/construction-company-02/#">
-                                        <span class="elementor-button-content-wrapper">
-                                            <span class="elementor-button-icon elementor-align-icon-right">
-                                                <i aria-hidden="true" class="fas fa-long-arrow-alt-right"></i>
-                                            </span>
-                                            <span class="elementor-button-text">Direction</span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> #}
                 </div>
                 <div class="elementor-element elementor-element-d14cf69 elementor-align-center elementor-widget elementor-widget-button" data-id="d14cf69" data-element_type="widget" data-widget_type="button.default">
                     <div class="elementor-widget-container">
@@ -493,7 +437,8 @@
         </div>
     </div>
     <div class="elementor-element elementor-element-a602a15 e-con-full e-flex e-con e-parent" data-id="a602a15" data-element_type="container">
-        {% for projects in project|slice(0,4) %}
+    <div class="e-con-inner">
+        {% for projects in project|slice(0,3) %}
             <div class="elementor-element elementor-element-e872e62 e-con-full e-flex e-con e-child" data-id="e872e62" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
                <div>
                    {% if projects.images.first()  == true %}
@@ -513,6 +458,7 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
     </div>
     <div class="elementor-element elementor-element-bb98507 e-flex e-con-boxed e-con e-parent" data-id="bb98507" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
         <div class="e-con-inner">

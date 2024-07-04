@@ -19,8 +19,7 @@ class TeamController extends AbstractController
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly TeamsRepository $teamRepository
-    )
-    {
+    ){
     }
 
     #[Route('/', name: '_list')]
@@ -111,7 +110,7 @@ class TeamController extends AbstractController
             }
 
             $this->entityManager->flush();
-            $this->addFlash('success','Team has been Updated Successfully.');
+            $this->addFlash('success',sprintf('Team %d has been Updated Successfully.', $team->getId()));
 
             return $this->redirectToRoute('teams_list');
         }
@@ -136,7 +135,7 @@ class TeamController extends AbstractController
         $team->setDeletedAt(new \DateTimeImmutable());
         $this->entityManager->flush();
 
-        $this->addFlash('success', 'Team has been deleted successfully.');
+        $this->addFlash('success', sprintf('Team %s has been deleted successfully.', $team->getName()));
 
         return $this->redirectToRoute('teams_list');
     }

@@ -14,8 +14,7 @@ class RequestController extends AbstractController
 {
     public function __construct(
         private readonly RequestRepository $requestRepository
-    )
-    {
+    ){
     }
 
     #[Route('/', name: '_list')]
@@ -42,5 +41,4 @@ class RequestController extends AbstractController
 
         return new JsonResponse(['content' => $content], JsonResponse::HTTP_OK);
     }
-
 }

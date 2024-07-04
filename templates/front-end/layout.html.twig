@@ -20,19 +20,19 @@
     <meta name="generator" content="Elementor 3.21.6; features: e_optimized_assets_loading, e_optimized_css_loading, additional_custom_breakpoints; settings: css_print_method-internal, google_font-enabled, font_display-auto">
 
     {% block stylesheets %}
-        <link rel="stylesheet" id="astra-theme-css-css" href="{{ asset('css/frontend-css/main.min.css') }}" media="all">
-        <link rel="stylesheet" href="{{ asset('css/frontend-css/astra-theme-inline.css') }}">
-        <link rel="stylesheet" id="elementor-frontend-css" href="{{ asset('css/frontend-css/frontend-lite.min.css') }}" media="all">
-        <link rel="stylesheet" id="elementor-frontend-inline-css" href="{{ asset('css/frontend-css/elementor-frontend-inline.css') }}" media="all">
-        <link rel="stylesheet" id="font-awesome-5-all-css" href="{{ asset('css/frontend-css/all.css') }}" media="all">
-        <link rel="stylesheet" id="elementor-icons-fa-solid-css" href="{{ asset('css/frontend-css/swiper.min.css') }}" media="all">
+        <link rel="stylesheet" id="astra-theme-css-css" href="{{ asset('css/frontendCss/main.min.css') }}" media="all">
+        <link rel="stylesheet" href="{{ asset('css/frontendCss/astra-theme-inline.css') }}">
+        <link rel="stylesheet" id="elementor-frontend-css" href="{{ asset('css/frontendCss/frontend-lite.min.css') }}" media="all">
+        <link rel="stylesheet" id="elementor-frontend-inline-css" href="{{ asset('css/frontendCss/elementor-frontend-inline.css') }}" media="all">
+        <link rel="stylesheet" id="font-awesome-5-all-css" href="{{ asset('css/frontendCss/all.css') }}" media="all">
+        <link rel="stylesheet" id="elementor-icons-fa-solid-css" href="{{ asset('css/frontendCss/swiper.min.css') }}" media="all">
         <link rel="stylesheet" id="solid-css" href="{{ asset('fontawesome-6.4.2/css/solid.min.css') }}" media="all">
-        <link rel="stylesheet" id="wpforms-classic-base-css" href="{{ asset('css/frontend-css/wpforms-base.min.css') }}" media="all">
-        <link rel="stylesheet" id="elementor-css" href="{{ asset('css/frontend-css/elementor.css') }}" media="all">
-        <link rel="stylesheet" id="widget-icon-box" href="{{ asset('css/frontend-css/widget-icon-box.min.css') }}" media="all">
+        <link rel="stylesheet" id="wpforms-classic-base-css" href="{{ asset('css/frontendCss/wpforms-base.min.css') }}" media="all">
+        <link rel="stylesheet" id="elementor-css" href="{{ asset('css/frontendCss/elementor.css') }}" media="all">
+        <link rel="stylesheet" id="widget-icon-box" href="{{ asset('css/frontendCss/widget-icon-box.min.css') }}" media="all">
         <link rel="stylesheet" id="bootstrap-utilities" href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap-utilities.min.css') }}" media="all">
-        <link rel="stylesheet" href="{{ asset('css/frontend-css/widget-icon-list.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/frontend-css/frontend.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/frontendCss/widget-icon-list.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/frontendCss/frontend.css') }}">
     {% endblock %}
 </head>
 
@@ -65,18 +65,18 @@
 </body>
 
 {% block javascripts %}
-    <script src="{{ asset('js/frontend-js/webpack.runtime.min.js') }}" id="elementor-webpack-runtime-js"></script>
+    <script src="{{ asset('js/frontendJs/webpack.runtime.min.js') }}" id="elementor-webpack-runtime-js"></script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script src="{{ asset('js/jquery3.7.1.js') }}" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/frontend-js/frontend-modules.min.js') }}" id="elementor-frontend-modules-js"></script>
-    <script src="{{ asset('js/frontend-js/core.min.js') }}" id="jquery-ui-core-js"></script>
+    <script src="{{ asset('js/frontendJs/frontend-modules.min.js') }}" id="elementor-frontend-modules-js"></script>
+    <script src="{{ asset('js/frontendJs/core.min.js') }}" id="jquery-ui-core-js"></script>
     <script id="elementor-frontend-js-before">
         var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.21.6","is_static":false,"experimentalFeatures":{"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"additional_custom_breakpoints":true,"container":true,"e_swiper_latest":true,"container_grid":true,"home_screen":true,"ai-layout":true,"landing-pages":true},"urls":{"assets":"https:\/\/websitedemos.net\/construction-company-02\/wp-content\/plugins\/elementor\/assets\/"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":7,"title":"Home%20-%20Construction%20Company","excerpt":"","featuredImage":false}};
     </script>
-    <script src="{{ asset('js/frontend-js/list.js') }}"></script>
-    <script src="{{ asset('js/frontend-js/frontend.min(1).js') }}" id="elementor-frontend-js"></script>
-    <script src="{{ asset('js/backend-js/header.js') }}"></script>
-    <script src="{{ asset('js/frontend-js/request.js') }}"></script>
+    <script src="{{ asset('js/frontendJs/list.js') }}"></script>
+    <script src="{{ asset('js/frontendJs/frontend.min(1).js') }}" id="elementor-frontend-js"></script>
+    <script src="{{ asset('js/admin/header.js') }}"></script>
+    <script src="{{ asset('js/frontendJs/request.js') }}"></script>
 {% endblock %}
 </html>

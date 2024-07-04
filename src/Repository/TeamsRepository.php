@@ -23,31 +23,6 @@ class TeamsRepository extends ServiceEntityRepository
         parent::__construct($registry, Teams::class);
     }
 
-    //    /**
-    //     * @return Teams[] Returns an array of Teams objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('t.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Teams
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
-
     public function getAllActiveTeams($search): QueryBuilder
     {
         $qb = $this->createQueryBuilder('t');
@@ -85,11 +60,11 @@ class TeamsRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-    public function findActiveTeams()
+    public function getActiveTeams()
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.deleted_at IS NULL')
-            ->orderBy('t.id', "ASC")
+            ->orderBy('t.orderBy', "ASC")
             ->getQuery()->getResult();
     }
 }

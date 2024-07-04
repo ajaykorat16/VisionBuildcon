@@ -20,11 +20,10 @@ class ServicesController extends AbstractController
         private readonly ServicesRepository $servicesRepository,
         private readonly ClientRepository $clientRepository,
         private readonly EntityManagerInterface $entityManager
-    )
-    {
+    ){
     }
 
-    #[Route('/', name: '_index')]
+    #[Route('', name: '_index')]
     public function index(Request $request): Response
     {
         $requestEntity = new RequestEntity();
@@ -42,15 +41,15 @@ class ServicesController extends AbstractController
 
         if ($request->isXmlHttpRequest()) {
             return $this->render('front-end/services/services.html.twig',[
-                'service' => $this->servicesRepository->findActiveServices(),
-                'client' => $this->clientRepository->findActiveClients(),
+                'service' => $this->servicesRepository->getServices(),
+                'client' => $this->clientRepository->getClients(),
                 'form' => $form->createView()
             ]);
         }
 
         return $this->render('front-end/services/services.html.twig',[
-            'service' => $this->servicesRepository->findActiveServices(),
-            'client' => $this->clientRepository->findActiveClients(),
+            'service' => $this->servicesRepository->getServices(),
+            'client' => $this->clientRepository->getClients(),
             'form' => $form->createView()
         ]);
     }

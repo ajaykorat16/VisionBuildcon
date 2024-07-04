@@ -3,12 +3,10 @@
 namespace App\Controller\FrontEnd;
 
 use App\Entity\Project;
-use App\Entity\Request as RequestEntity;
-use App\Form\RequestType;
 use App\Repository\ClientRepository;
 use App\Repository\ProjectRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,16 +19,18 @@ class ProjectController extends AbstractController
         private readonly ClientRepository $clientRepository,
     ) {
     }
-    #[Route('', name: '_index')]
+
+    #[Route('', name: '_index', requirements: ['' => '\d+'])]
     public function index(): Response
     {
         return $this->render('front-end/project/project.html.twig', [
-            'totalProjects' => $this->projectRepository->findAllActiveProjectsCount(),
-            'project' => $this->projectRepository->findAllActiveProjects(
-                0,
+            'totalProjects' => $this->projectRepository->getTotalCountsProjects(),
+            'project' => $this->projectRepository->getActiveProjects(
+                NULL,
                 ProjectRepository::PAGE_SIZE,
+                ProjectRepository::OFFSET
             ),
-            'client' => $this->clientRepository->findActiveClients(),
+            'client' => $this->clientRepository->getClients(),
         ]);
     }
 
@@ -39,14 +39,14 @@ class ProjectController extends AbstractController
     {
         $offset = (int) $request->query->get('offset');
 
-        $project = $this->projectRepository->findAllActiveProjects($offset, ProjectRepository::PAGE_SIZE);
-        $content = '';
+        $project = $this->projectRepository->getActiveProjects(NULL, ProjectRepository::PAGE_SIZE, $offset);
+        $content = [];
 
         foreach ($project as $projects) {
-            $content .= $this->renderView('front-end/project/project_content.html.twig', ['projects' => $projects]);
+            $content[] = $this->renderView('front-end/project/project_content.html.twig', ['projects' => $projects]);
         }
 
-        return new Response($content);
+        return new JsonResponse(['status' => 'OK', 'content' => $content]);
     }
 
     #[Route('/{name}', name: '_show')]

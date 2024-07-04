@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImagesType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options):void
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
     {
         $builder
             ->add('image', FileType::class, [

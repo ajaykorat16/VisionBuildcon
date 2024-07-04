@@ -19,10 +19,10 @@ class HomeController extends AbstractController
         private readonly ServicesRepository $servicesRepository,
         private readonly ProjectRepository $projectRepository,
         private readOnly EntityManagerInterface $entityManager
-    )
-    {
+    ){
     }
-    #[Route('/', name: '_index',requirements: ['/' => '\d+'])]
+    
+    #[Route('/', name: '_index', requirements: ['/' => '\d+'])]
     public function index(Request $request): Response
     {
         $requestEntity = new RequestEntity();
@@ -40,15 +40,15 @@ class HomeController extends AbstractController
 
         if ($request->isXmlHttpRequest()) {
             return $this->render('front-end/home/content.html.twig', [
-                'service' => $this->servicesRepository->findActiveServices(),
-                'project' => $this->projectRepository->findActiveProjects(),
+                'service' => $this->servicesRepository->getServices(),
+                'project' => $this->projectRepository->getProjects(),
                 'form' => $form->createView()
             ]);
         }
 
         return $this->render('front-end/home/content.html.twig', [
-            'service' => $this->servicesRepository->findActiveServices(),
-            'project' => $this->projectRepository->findActiveProjects(),
+            'service' => $this->servicesRepository->getServices(),
+            'project' => $this->projectRepository->getProjects(),
             'form' => $form->createView()
         ]);
     }

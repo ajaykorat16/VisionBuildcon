@@ -6,10 +6,6 @@
     display: block !important;
 }
 
-.elementor-element-8d1658f :hover {
-    cursor: pointer !important;
-}
-
 .margin-left{
     margin-left: 35px;
 }
@@ -24,4 +20,36 @@
 
 .elementor-7 .elementor-element.elementor-element-c31875b{
     border: 1px solid #e1e1e1 !important;
+}
+
+.elementor-15 .elementor-element.elementor-element-28b9c6b {
+    --justify-content: none !important;
+}
+
+.single-image {
+    display: flex;
+    justify-content: space-around;
+}
+
+.elementor-13 .elementor-element.elementor-element-9b5c045 {
+    width: 100% !important;
+}
+
+.flash-messages {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+} 
+
+#ast-desktop-header .alert-success {
+    --bs-alert-color: #0f5132;
+    --bs-alert-bg: #d1e7dd;
+    --bs-alert-border-color: #badbcc;
+    position: absolute;
+    z-index: 10;
+  } 
+
+.elementor-element-a602a15 .e-con-inner {
+    display: flex;
+    gap: 20px;
 }

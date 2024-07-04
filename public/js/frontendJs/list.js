@@ -32,16 +32,17 @@ var Main = Main || {};
                         return window.location.reload();
                     }
 
-                    if (data.trim().length > 0) {
-                        $table.find('#projectContent').append(data);
+                    if (data.content && data.content.length > 0) {
+                        data.content.forEach(function(html) {
+                            $table.find('#projectContent').append(html);
+                        });
                     }
 
                     loadedItems = $table.find('.project-item').length;
-
                     loadingMore = false;
 
                     setTimeout(function(){$(".loading-image").addClass("visibility-hidden")}, 500);
-
+                    
                 }).fail(function (xhr, status, error) {
                     console.error("Failed to load more content: ", error);
                     loadingMore = false;
