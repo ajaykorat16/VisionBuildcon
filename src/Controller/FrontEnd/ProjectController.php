@@ -49,7 +49,7 @@ class ProjectController extends AbstractController
         return new JsonResponse(['status' => 'OK', 'content' => $content]);
     }
 
-    #[Route('/{name}', name: '_show')]
+    #[Route('/{slug}', name: '_show', requirements: ['slug' => '.+'])]
     public function show(Project $project): Response
     {
         return $this->render('front-end/project/show.html.twig', [
