@@ -6,6 +6,7 @@ use App\Entity\Request as RequestEntity;
 use App\Form\RequestType;
 use App\Repository\ProjectRepository;
 use App\Repository\ServicesRepository;
+use App\Repository\TeamsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,8 @@ class HomeController extends AbstractController
     public function __construct(
         private readonly ServicesRepository $servicesRepository,
         private readonly ProjectRepository $projectRepository,
-        private readOnly EntityManagerInterface $entityManager
+        private readonly EntityManagerInterface $entityManager,
+        private readonly TeamsRepository $teamsRepository
     ){
     }
     
@@ -40,6 +42,7 @@ class HomeController extends AbstractController
 
         if ($request->isXmlHttpRequest()) {
             return $this->render('front-end/home/content.html.twig', [
+                'team' => $this->teamsRepository->getActiveTeams(),
                 'service' => $this->servicesRepository->getServices(),
                 'project' => $this->projectRepository->getProjects(),
                 'form' => $form->createView()
@@ -47,6 +50,7 @@ class HomeController extends AbstractController
         }
 
         return $this->render('front-end/home/content.html.twig', [
+            'team' => $this->teamsRepository->getActiveTeams(),
             'service' => $this->servicesRepository->getServices(),
             'project' => $this->projectRepository->getProjects(),
             'form' => $form->createView()

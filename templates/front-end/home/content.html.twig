@@ -350,15 +350,32 @@
         <div class="e-con-inner">
             <div class="elementor-element elementor-element-9109d39 e-con-full e-flex e-con e-child" data-id="9109d39" data-element_type="container">
                 <div class="elementor-element elementor-element-80ac6da e-con-full e-flex e-con e-child" data-id="80ac6da" data-element_type="container">
+                {% for teams in team|slice(0,4) %}
                     <div class="elementor-element elementor-element-faf2b5d e-con-full e-flex e-con e-child" data-id="faf2b5d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                        <img src="{{ asset('image/' ~ teams.teamPhoto) }}" style="height: 100%; width: 100%">
                         <div class="elementor-element elementor-element-900a2dd elementor-widget elementor-widget-icon-box" data-id="900a2dd" data-element_type="widget" data-widget_type="icon-box.default">
                             <div class="elementor-widget-container">
                                 <div class="elementor-icon-box-wrapper">
                                     <div class="elementor-icon-box-content">
                                         <h3 class="elementor-icon-box-title">
-                                            <span>Steven Marks </span>
+                                            <p class="elementor-icon-box-description">{{ teams.name }}</p>
                                         </h3>
-                                        <p class="elementor-icon-box-description">CEO </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                    {# <div class="elementor-element elementor-element-fafafa e-con-full e-flex e-con e-child" data-id="faf2b5d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                        <div class="elementor-element elementor-element-900a2dd elementor-widget elementor-widget-icon-box" data-id="900a2dd" data-element_type="widget" data-widget_type="icon-box.default">
+                            <div class="elementor-widget-container">
+                                <div class="elementor-icon-box-wrapper">
+                                    <div class="elementor-icon-box-content">
+                                        <h3 class="elementor-icon-box-title">
+                                            <span>Bhaumik Patel </span>
+                                        </h3>
+                                        <p class="elementor-icon-box-description">Partner & CEO </p>
                                     </div>
                                 </div>
                             </div>
@@ -370,9 +387,9 @@
                                 <div class="elementor-icon-box-wrapper">
                                     <div class="elementor-icon-box-content">
                                         <h3 class="elementor-icon-box-title">
-                                            <span>Lara Smith </span>
+                                            <span>Viral Gudaliya </span>
                                         </h3>
-                                        <p class="elementor-icon-box-description">CTO </p>
+                                        <p class="elementor-icon-box-description">Partner & Director </p>
                                     </div>
                                 </div>
                             </div>
@@ -384,14 +401,14 @@
                                 <div class="elementor-icon-box-wrapper">
                                     <div class="elementor-icon-box-content">
                                         <h3 class="elementor-icon-box-title">
-                                            <span>John Doe </span>
+                                            <span>Fanil Mehta </span>
                                         </h3>
-                                        <p class="elementor-icon-box-description">COO </p>
+                                        <p class="elementor-icon-box-description">CMD & Director </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> #}
                 </div>
                 <div class="elementor-element elementor-element-a89d7a5 elementor-align-center elementor-widget elementor-widget-button" data-id="a89d7a5" data-element_type="widget" data-widget_type="button.default">
                     <div class="elementor-widget-container">

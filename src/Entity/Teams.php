@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: TeamsRepository::class)]
-#[UniqueEntity(fields: ['name'], message: 'This name is already in use.')]
 class Teams
 {
     #[ORM\Id]

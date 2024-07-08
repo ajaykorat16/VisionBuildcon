@@ -225,11 +225,11 @@
                         <div class="elementor-element elementor-element-9b5c045 e-con-full e-flex e-con e-child" data-id="9b5c045" data-element_type="container">
                             <div class="elementor-element elementor-element-93154b4 elementor-position-top elementor-widget elementor-widget-image-box" data-id="93154b4" data-element_type="widget" data-widget_type="image-box.default">
                                 <div class="elementor-widget-container">
-                                   <div class="elementor-image-box-wrapper d-flex gap-3">
+                                   <div class="elementor-image-box-wrapper d-flex flex-wrap gap-3">
                                        {% for teams in team %}
                                            <div class="elementor-image-box-img">
                                                <figure>
-                                                   <img fetchpriority="high" decoding="async" src="{{ asset('image/' ~ teams.teamPhoto) }}" class="attachment-full size-full" style="height: 250px; width: 380px">
+                                                   <img fetchpriority="high" decoding="async" src="{{ asset('image/' ~ teams.teamPhoto) }}" class="attachment-full size-full" style="height: 300px; width: 300px">
                                                </figure>
                                                <div class="elementor-image-box-content">
                                                    <h3 class="elementor-image-box-title">{{ teams.name }}</h3>
