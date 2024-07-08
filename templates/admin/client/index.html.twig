@@ -18,7 +18,7 @@
         <div class=" d-flex" id="text-search">
             {{ form_widget(search.search, {'attr': {'class': 'form-control'}}) }}
             {{ form_widget(search.searchButton) }}
-            <a href="{{ path('clients_list') }}"><button type="submit" id="reset" name="reset" class="btn btn-primary">reset</button></a>
+            <a href="{{ path('clients_list') }}" class="btn btn-primary">reset</a>
         </div>
         {{ form_end(search) }}
     </div>
