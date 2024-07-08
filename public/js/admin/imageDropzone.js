@@ -41,19 +41,19 @@ var DropZone = DropZone || {};
             dragenter: function(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").addClass("drag-active");
+                $("#images").addClass("drag-active");
             },
 
             dragleave: function(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").removeClass("drag-active");
+                $("#images").removeClass("drag-active");
             },
 
             drop: function(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").removeClass("drag-active");
+                $("#images").removeClass("drag-active");
             }
 
         };
@@ -180,19 +180,19 @@ var DropZone = DropZone || {};
             dragenter: function (e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").addClass("drag-active");
+                $("#images").addClass("drag-active");
             },
 
             dragleave: function (e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").removeClass("drag-active");
+                $("#images").removeClass("drag-active");
             },
 
             drop: function (e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").removeClass("drag-active");
+                $("#images").removeClass("drag-active");
             }
         };
     }
@@ -245,19 +245,19 @@ var DropZone = DropZone || {};
             dragenter: function(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").addClass("drag-active");
+                $("#images").addClass("drag-active");
             },
 
             dragleave: function(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").removeClass("drag-active");
+                $("#images").removeClass("drag-active");
             },
 
             drop: function(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").removeClass("drag-active");
+                $("#images").removeClass("drag-active");
             }
         };
     }
@@ -277,7 +277,7 @@ var DropZone = DropZone || {};
 
     module.dropzoneServiceImage = function () {
         Dropzone.options.images = {
-            url: "/images", // Route to handle the image upload
+            url: "/images", // Route to handle the image-uploadimage upload
             paramName: "file",
             multiple: false,
             maxFiles: 1,
@@ -317,19 +317,19 @@ var DropZone = DropZone || {};
             dragenter: function(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").addClass("drag-active");
+                $("#images").addClass("drag-active");
             },
 
             dragleave: function(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").removeClass("drag-active");
+                $("#images").removeClass("drag-active");
             },
 
             drop: function(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                $("#image-upload").removeClass("drag-active");
+                $("#images").removeClass("drag-active");
             }
         };
     }
