@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)https://websitedemos.net/construction-company-02/# -->
 <html lang="en-US">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
     <title>Vision Buildcon</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logo-urban-nest-150x54.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/vision-builcon.jpg') }}">
     {% block title %}{% endblock %}
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
@@ -37,7 +36,7 @@
 </head>
 
 <body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="home page-template-default page page-id-7 wp-custom-logo ast-desktop ast-page-builder-template ast-no-sidebar astra-4.6.14 ast-single-post ast-replace-site-logo-transparent ast-inherit-site-logo-transparent ast-theme-transparent-header ast-hfb-header elementor-default elementor-kit-4 elementor-page elementor-page-7 e--ua-blink e--ua-chrome e--ua-webkit" style="" data-elementor-device-mode="desktop" cz-shortcut-listen="true">
-    <a class="skip-link screen-reader-text" href="https://websitedemos.net/construction-company-02/#content" role="link" title="Skip to content">Skip to content</a>
+    <a class="skip-link screen-reader-text" href="{{path('home_index')}}" role="link" title="Skip to content">Skip to content</a>
     <div class="hfeed site" id="page">
         {% include 'front-end/includes/header.html.twig' %}
         <div id="content" class="site-content">
@@ -57,10 +56,8 @@
                 </div>
             </div>
         </div>
-        {% set current_route = app.request.attributes.get('_route') %}
-        {% if current_route == 'home_index' %}
+
             {% include 'front-end/includes/footer.html.twig' %}
-        {% endif %}
     </div>
 </body>
 

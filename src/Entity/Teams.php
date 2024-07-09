@@ -21,6 +21,10 @@ class Teams
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    private ?string $designation = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $team_photo = null;
 
     #[ORM\Column(length: 255)]
@@ -50,6 +54,18 @@ class Teams
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDesignation(): ?string
+    {
+        return $this->designation;
+    }
+
+    public function setDesignation(string $designation): self
+    {
+        $this->designation = $designation;
 
         return $this;
     }
@@ -101,4 +117,5 @@ class Teams
 
         return $this;
     }
+
 }

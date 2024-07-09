@@ -26,12 +26,12 @@ var Main = Main || {};
     }
 
     // Register remove 'is-invalid' events
-    removeInvalidClass("#project_name, #project_description, #client_name, #client_description, #service_name, #service_description, #team_name");
+    removeInvalidClass("#project_name, #project_description, #client_name, #client_description, #service_name, #service_description, #team_name, #team_designation");
 
     saveHandler("#project_save", "#project_name", "#project_description");
     saveHandler("#client_save", "#client_name", "#client_description");
     saveHandler("#service_save", "#service_name", "#service_description");
-    saveHandler("#team_save", "#team_name", null);
+    saveHandler("#team_save", "#team_name", "#team_designation");
 
     module.validate = function ($textarea, $name) {
         let isValid = true;

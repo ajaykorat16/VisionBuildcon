@@ -19,7 +19,16 @@
 }
 
 .elementor-7 .elementor-element.elementor-element-c31875b{
+    margin-top: 25px;
     border: 1px solid #e1e1e1 !important;
+}
+
+.elementor-7 .elementor-element.elementor-element-b4ededb .elementor-heading-title {
+    font-weight: 700;
+}
+
+.elementor-7 .elementor-element.elementor-element-7bca866 .elementor-heading-title {
+    font-weight: 100;
 }
 
 .elementor-15 .elementor-element.elementor-element-28b9c6b {
@@ -63,7 +72,7 @@
     padding-bottom: 0px !important;
     padding-left: 0px !important;
     padding-right: 0px !important;
-    height: 400px !important;
+    height: 300px;
 }
 
 .elementor-7 .elementor-element.elementor-element-900a2dd {
@@ -71,10 +80,8 @@
     position: absolute;
 }
 
-.elementor-7 .elementor-element.elementor-element-900a2dd .elementor-icon-box-description {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 25px;
+.team-box-wrapper {
+    width: 70%;
 }
 
 .elementor-13 .elementor-element.elementor-element-93154b4.elementor-position-top .elementor-image-box-img {
@@ -88,4 +95,73 @@
 
 .elementor .elementor-widget:not(.elementor-widget-text-editor):not(.elementor-widget-theme-post-content) figure {
     margin-bottom: 15px;
+}
+
+.custom-logo-link .site-logo-img {
+    display: flex;
+    align-items: center;
+}
+
+.vision {
+    letter-spacing: 1px;
+    display: inline-block;
+    width: 50%;
+    font-weight: 800;
+    line-height: initial;
+    font-size: medium;
+}
+
+.elementor-7 .elementor-element.elementor-element-c311d28:not(.elementor-motion-effects-element-type-background), .elementor-7 .elementor-element.elementor-element-c311d28>.elementor-motion-effects-container>.elementor-motion-effects-layer {
+    background-image: none !important;
+}
+
+.elementor-7 .elementor-element.elementor-element-80ac6da {
+    background-color: #323B4F;
+}
+
+.elementor-7 .elementor-element.elementor-element-faf2b5d::before {
+    background-image:none !important;
+}
+
+.team-title, .team-description { 
+    color: black !important;
+}
+
+.team {
+    border-radius: 11px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.elementor-15 .elementor-element.elementor-element-0c181ac iframe {
+    height: 562px !important;
+    filter: none !important;
+}
+
+.elementor-element.elementor-element-7671b54:not(.elementor-motion-effects-element-type-background) {
+    background-color: var(--e-global-color-astglobalcolor2);
+}
+
+.elementor-element.elementor-element-2f3bd83 .elementor-heading-title {
+    color: #ffffff;
+}
+
+.elementor-element.elementor-element-7cd7504 {
+    color: #ffffff;
+}
+
+#request_message{
+    height: 60px !important;
+}
+
+.elementor-widget-google_maps {
+    height: 525px !important;
+}
+
+.elementor-widget-google_maps .elementor-custom-embed {
+    height: 100% !important;
+}
+
+.menu-link {
+    color: #ffffff;
 }

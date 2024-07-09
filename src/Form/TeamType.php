@@ -16,6 +16,7 @@ class TeamType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('designation', TextType::class)
             ->add('teamPhoto',HiddenType::class,[
                 'data_class' => null,
                 'label' => false,

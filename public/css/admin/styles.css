@@ -11523,3 +11523,25 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.custom-logo-link{
+  margin-left: 14px;
+  width: 185px;
+}
+
+.custom-logo-link:hover {
+  color: #FFFFFF;
+}
+.custom-logo-link .site-logo-img {
+  display: flex;
+  align-items: center;
+}
+
+.vision {
+  letter-spacing: 1px;
+  display: inline-block;
+  width: 50%;
+  font-weight: 800;
+  line-height: initial;
+  font-size: medium;
+}

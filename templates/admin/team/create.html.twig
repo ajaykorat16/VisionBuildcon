@@ -24,6 +24,12 @@
                 {{ form_errors(form.name) }}
             </div>
             <div class="form-group mb-4 input-container">
+                <div class="input-label">
+                    {{ form_label(form.designation) }}
+                </div>
+                {{ form_widget(form.designation, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group mb-4 input-container">
                 {% if team is defined  and team.teamPhoto%}
                 <div class="photo-remove">
                     <div class="pb-4">

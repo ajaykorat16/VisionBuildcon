@@ -8,7 +8,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Vision Buildcon</title>
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/real-estate-logo.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/vision-builcon.jpg') }}">
         <link href="{{ asset('css/admin/styles.css') }}" rel="stylesheet" media="screen">
         <link href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
         <link href="{{ asset('fontawesome-6.4.2/css/all.css') }}">
@@ -42,8 +42,12 @@
    <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <img type="image/x-icon" src="{{ asset('img/real-estate-logo.png') }}" class="real-estate-logo">
-            <a class="navbar-brand ps-3" href="{{ path('projects_list')}}">Vision Buildcon</a>
+            <a href="{{ path('projects_list') }}" class="custom-logo-link transparent-custom-logo" rel="home" itemprop="url" aria-label="Construction Company">
+                <span class="site-logo-img">
+                    <img width="50" height="45" src="{{ asset('img/logo-urban-nest-2.png') }}" class="custom-logo" alt="" decoding="async" sizes="(max-width: 150px) 100vw, 150px">
+                    <span class="vision">VISION BUILCON</span>
+                </span>
+            </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
