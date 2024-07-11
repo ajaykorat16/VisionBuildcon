@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240708114144 extends AbstractMigration
+final class Version20240711115227 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -19,11 +19,12 @@ final class Version20240708114144 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE teams ADD designation VARCHAR(255) NOT NULL AFTER `name`');
+        $this->addSql('ALTER TABLE teams CHANGE `order_by` `order_priority` int NOT NULL AFTER `team_photo`');
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE teams DROP designation, CHANGE team_photo team_photo VARCHAR(255) DEFAULT NULL, CHANGE order_by order_by TEXT NOT NULL');
+        // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE teams CHANGE `order_priority` `order_by` int NOT NULL AFTER `team_photo`');
     }
 }
