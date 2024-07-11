@@ -189,11 +189,6 @@
     padding-block-end: 100px;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-}
-
 .modal {
     --bs-modal-zindex: 1055;
     --bs-modal-width: 500px;
