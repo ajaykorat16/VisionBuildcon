@@ -28,11 +28,8 @@ class Teams
     private ?string $team_photo = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Regex(
-        pattern: '/^\d+$/',
-        message: 'The order must contain only numbers.'
-    )]
-    private ?string $orderBy = null;
+    #[Assert\NotBlank]
+    private ?int $order_priority = null;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $deleted_at = null;
@@ -82,14 +79,14 @@ class Teams
         return $this;
     }
 
-    public function getOrderBy(): ?string
+    public function getOrderPriority(): ?string
     {
-        return $this->orderBy;
+        return $this->order_priority;
     }
 
-    public function setOrderBy(?string $orderBy): self
+    public function setOrderPriority(?string $orderBy): self
     {
-        $this->orderBy = $orderBy;
+        $this->order_priority = $orderBy;
 
         return $this;
     }

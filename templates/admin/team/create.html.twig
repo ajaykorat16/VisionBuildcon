@@ -49,8 +49,11 @@
                 </div>
             </div>
             <div class="form-group mb-4 input-container">
-                {{ form_widget(form.orderBy, {'attr': {'class': 'form-control'}}) }}
-                {{ form_errors(form.orderBy) }}
+                <div class="input-label">
+                    {{ form_label(form.orderPriority) }}
+                </div>
+                {{ form_widget(form.orderPriority, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.orderPriority) }}
 
             </div>
             <div>

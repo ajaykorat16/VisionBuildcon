@@ -1,12 +1,50 @@
-<a id="project-row-{{ projects.id }}" href="{{ path('project_show', {'slug': projects.slug}) }}" class="elementor-element elementor-element-1cc3882 e-con-full e-flex e-con e-child project-item">
+<a id="project-row-{{ projects.id }}" 
+    data-slug="{{ projects.slug }}"  
+    data-name="{{ projects.name }}" 
+    class="elementor-element elementor-element-1cc3882 e-con-full e-flex e-con e-child project-item" 
+    data-bs-toggle="modal" 
+    data-bs-target="#projectImagesModal{{ projects.id }}" style="cursor:pointer">
     <div style="height: 250px">
-        {% if projects.images.first()  == true %}
-            <img src="{{ asset('image/' ~ projects.images.first.image) }}" class="h-100 w-100">
+        {% if projects.images.first() %}
+            <img src="{{ asset('image/' ~ projects.images.first().image) }}" class="h-100 w-100">
         {% endif %}
     </div>
-    <div class="elementor-element elementor-element-11053e9 project-title elementor-widget-icon-box" >
+    <div class="elementor-element elementor-element-11053e9 project-title elementor-widget-icon-box">
         <h4 class="elementor-icon-box-title">
             <span>{{ projects.name }}</span>
         </h4>
     </div>
 </a>
+
+<div class="modal" tabindex="-1" id="projectImagesModal{{ projects.id }}">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">{{projects.name}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">            
+            <div id="projectImages{{ projects.id }}" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for image in projects.images %}
+                        <div class="carousel-item {{ loop.first ? 'active' }}">
+                            <img src="{{ asset('image/' ~ image.image) }}" class="d-block w-100" alt="{{ projects.name }}">
+                        </div>
+                    {% endfor %}    
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#projectImages{{ projects.id }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#projectImages{{ projects.id }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>

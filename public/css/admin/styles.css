@@ -11526,7 +11526,7 @@ body {
 
 .custom-logo-link{
   margin-left: 14px;
-  width: 185px;
+  width: 200px;
 }
 
 .custom-logo-link:hover {
@@ -11544,4 +11544,9 @@ body {
   font-weight: 800;
   line-height: initial;
   font-size: medium;
+  padding-left: 10px;
+}
+
+.custom-logo {
+  border-radius: 5px;
 }

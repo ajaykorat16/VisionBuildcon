@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Teams;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +23,12 @@ class TeamType extends AbstractType
                 'label' => false,
                 'required' => false
             ])
-            ->add('orderBy',TextType::class)
+            ->add('orderPriority',NumberType::class,[
+                'label' => 'Order',
+                'attr' => [
+                    'style' => 'width:17%'
+                ],
+            ])
             ->add('save', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-success',
@@ -30,6 +36,7 @@ class TeamType extends AbstractType
                 'label' => 'Save'
             ])
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver) : void

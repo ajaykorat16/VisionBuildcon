@@ -10,14 +10,15 @@ var Main = Main || {};
     }
 
     // Generalized save event handler
-    function saveHandler(saveBtn, nameSelector, descSelector) {
+    function saveHandler(saveBtn, nameSelector, descSelector, orderPriority) {
         $(document).on("click", saveBtn, function (e) {
             e.preventDefault();
 
             const $name = nameSelector ? $(nameSelector) : null;
             const $textarea = descSelector ? $(descSelector) : null;
+            const $orderPriority = orderPriority ? $(orderPriority) : null;
 
-            const isValid = module.validate($textarea, $name);
+            const isValid = module.validate($textarea, $name, $orderPriority);
 
             if (isValid) {
                 $(this).closest('form').submit();
@@ -26,14 +27,14 @@ var Main = Main || {};
     }
 
     // Register remove 'is-invalid' events
-    removeInvalidClass("#project_name, #project_description, #client_name, #client_description, #service_name, #service_description, #team_name, #team_designation");
+    removeInvalidClass("#project_name, #project_description, #client_name, #client_description, #service_name, #service_description, #team_name, #team_designation, #team_orderPriority");
 
-    saveHandler("#project_save", "#project_name", "#project_description");
-    saveHandler("#client_save", "#client_name", "#client_description");
-    saveHandler("#service_save", "#service_name", "#service_description");
-    saveHandler("#team_save", "#team_name", "#team_designation");
+    saveHandler("#project_save", "#project_name", "#project_description", null);
+    saveHandler("#client_save", "#client_name", "#client_description", null);
+    saveHandler("#service_save", "#service_name", "#service_description", null);
+    saveHandler("#team_save", "#team_name", "#team_designation", "#team_orderPriority");
 
-    module.validate = function ($textarea, $name) {
+    module.validate = function ($textarea, $name, $orderPriority) {
         let isValid = true;
 
         if ($textarea && !$textarea.val()) {
@@ -48,6 +49,13 @@ var Main = Main || {};
             isValid = false;
         } else {
             $name.removeClass("is-invalid");
+        }
+
+        if ($orderPriority && !$orderPriority.val()) {
+            $orderPriority.addClass("is-invalid");
+            isValid = false;
+        } else {
+            $orderPriority && $orderPriority.removeClass("is-invalid");
         }
 
         return isValid;

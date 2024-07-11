@@ -20,6 +20,7 @@ final class Version20240708114144 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->addSql('ALTER TABLE teams ADD designation VARCHAR(255) NOT NULL AFTER `name`');
+        $this->addSql('ALTER TABLE teams CHANGE `order_by` `order_priority` int NOT NULL AFTER `team_photo`');
     }
 
     public function down(Schema $schema): void

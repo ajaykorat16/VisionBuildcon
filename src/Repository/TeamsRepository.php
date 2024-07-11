@@ -64,7 +64,7 @@ class TeamsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.deleted_at IS NULL')
-            ->orderBy('t.orderBy', "ASC")
+            ->orderBy('t.order_priority', "ASC")
             ->getQuery()->getResult();
     }
 }

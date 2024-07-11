@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
     <title>Vision Buildcon</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/vision-builcon.jpg') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/vision-buildcon-logo.jpg') }}">
     {% block title %}{% endblock %}
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
@@ -18,7 +18,9 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="generator" content="Elementor 3.21.6; features: e_optimized_assets_loading, e_optimized_css_loading, additional_custom_breakpoints; settings: css_print_method-internal, google_font-enabled, font_display-auto">
 
-    {% block stylesheets %}
+      {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap-utilities.min.css') }}">
+        <link rel="stylesheet" id="bootstrap-utilities" href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap-utilities.min.css') }}" media="all">
         <link rel="stylesheet" id="astra-theme-css-css" href="{{ asset('css/frontendCss/main.min.css') }}" media="all">
         <link rel="stylesheet" href="{{ asset('css/frontendCss/astra-theme-inline.css') }}">
         <link rel="stylesheet" id="elementor-frontend-css" href="{{ asset('css/frontendCss/frontend-lite.min.css') }}" media="all">
@@ -29,7 +31,6 @@
         <link rel="stylesheet" id="wpforms-classic-base-css" href="{{ asset('css/frontendCss/wpforms-base.min.css') }}" media="all">
         <link rel="stylesheet" id="elementor-css" href="{{ asset('css/frontendCss/elementor.css') }}" media="all">
         <link rel="stylesheet" id="widget-icon-box" href="{{ asset('css/frontendCss/widget-icon-box.min.css') }}" media="all">
-        <link rel="stylesheet" id="bootstrap-utilities" href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap-utilities.min.css') }}" media="all">
         <link rel="stylesheet" href="{{ asset('css/frontendCss/widget-icon-list.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/frontendCss/frontend.css') }}">
     {% endblock %}
@@ -66,6 +67,7 @@
     <script src="{{ asset('/bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script src="{{ asset('js/jquery3.7.1.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ asset('bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
     <script src="{{ asset('js/frontendJs/frontend-modules.min.js') }}" id="elementor-frontend-modules-js"></script>
     <script src="{{ asset('js/frontendJs/core.min.js') }}" id="jquery-ui-core-js"></script>
     <script id="elementor-frontend-js-before">
