@@ -2206,7 +2206,7 @@ textarea.form-control-lg {
 
 .load-more-loader .dispatcher-loading-image,
 .load-more-loader .loading-image {
-    position: fixed;
+    text-align: center;
     top: 0;
     bottom: 0;
     left: 0;
@@ -11549,4 +11549,8 @@ body {
 
 .custom-logo {
   border-radius: 5px;
+}
+
+.reset {
+  padding-top: 12px;
 }

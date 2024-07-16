@@ -1,9 +1,10 @@
 {% extends 'admin/backend_layout.html.twig' %}
 
+{% block javascripts %}
+    <script src="{{ asset('js/admin/list.js') }}" ></script>
+{% endblock %}    
+
 {% block body %}
-    <div class="load-more-loader">
-        {% include 'gif/loader-gif.html.twig' with {w: 44, h: 44} %}
-    </div>
     <div class="text-color-grey mt-15">
         <h2>Request</h2>
     </div>
@@ -33,5 +34,8 @@
             {% endif %}
             </tbody>
         </table>
+        <div class="load-more-loader">
+            {% include 'gif/loader-gif.html.twig' with {w: 44, h: 44} %}
+        </div>
     </div>
 {% endblock %}

@@ -1,15 +1,14 @@
 {% extends 'admin/backend_layout.html.twig' %}
 
 {% block javascripts %}
-    <script type="text/javascript">
-        Delete.onShowModal();
-    </script>
-{% endblock %}
+     <script src="{{ asset('js/admin/list.js') }}"></script>
+     <script src="{{ asset('js/admin/delete.js') }}"></script>
+     <script>
+         Delete.onShowModal();
+     </script>
+ {% endblock %}
 
 {% block body %}
-    <div class="load-more-loader">
-        {% include 'gif/loader-gif.html.twig' with {w: 44, h: 44} %}
-    </div>
     <div class="text-color-grey mt-15">
         <h2>Projects</h2>
     </div>
@@ -18,7 +17,7 @@
         <div class=" d-flex" id="text-search">
             {{ form_widget(search.search, {'attr': {'class': 'form-control'}}) }}
             {{ form_widget(search.searchButton) }}
-            <a href="{{ path('projects_list') }}" class="btn btn-primary">reset</a>
+            <a href="{{ path('projects_list') }}" class="btn btn-primary reset">reset</a>
         </div>
         {{ form_end(search) }}
     </div>
@@ -49,6 +48,9 @@
             {% endif %}
             </tbody>
         </table>
+        <div class="load-more-loader">
+            {% include 'gif/loader-gif.html.twig' with {w: 44, h: 44} %}
+        </div>
     </div>
     {{ include('admin/_delete_modal.html.twig', { 'project': project }) }}
 {% endblock %}

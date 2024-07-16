@@ -1,6 +1,8 @@
 {% extends 'admin/backend_layout.html.twig' %}
 
 {% block javascripts %}
+    <script src="{{ asset('js/admin/validation.js') }}"></script>
+    <script src="{{ asset('js/admin/imageDropzone.js') }}"></script>
     <script>
         DropZone.dropzoneImage();
         DropZone.initRemoveImages('.remove-client-image', "#images", '.client-images', '.image-upload');

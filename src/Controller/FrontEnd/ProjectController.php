@@ -2,7 +2,6 @@
 
 namespace App\Controller\FrontEnd;
 
-use App\Entity\Project;
 use App\Repository\ClientRepository;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

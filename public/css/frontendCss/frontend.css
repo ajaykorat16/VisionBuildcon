@@ -528,3 +528,8 @@
  .custom-logo {
   border-radius: 5px;
  }
+
+ .carousel-control-next:focus {   
+    background-color: transparent;
+    border-color: transparent;
+}
