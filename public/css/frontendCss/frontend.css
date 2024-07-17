@@ -76,12 +76,12 @@
 }
 
 .elementor-7 .elementor-element.elementor-element-900a2dd {
-    width: 100%;
-    position: absolute;
+    width: 100% !important;
+    position: absolute !important;
 }
 
 .team-box-wrapper {
-    width: 70%;
+    width: 70% !important;
 }
 
 .elementor-13 .elementor-element.elementor-element-93154b4.elementor-position-top .elementor-image-box-img {
@@ -116,8 +116,14 @@
     background-image: none !important;
 }
 
-.elementor-7 .elementor-element.elementor-element-80ac6da {
+.about-founder {
     background-color: #323B4F;
+}
+
+.founder {
+  height: 100% !important; 
+  width: 100% !important; 
+  border-radius:16px !important;
 }
 
 .elementor-7 .elementor-element.elementor-element-faf2b5d::before {
@@ -182,7 +188,7 @@
 
 #menu-item {
     list-style-type:disc !important;
-    margin-left: 30px;
+    /* margin-left: 30px; */
 }
 
 #projectListing {

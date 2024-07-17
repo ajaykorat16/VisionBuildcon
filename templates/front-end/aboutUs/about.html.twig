@@ -221,21 +221,25 @@
                     <div class="elementor-element elementor-element-1e6e685 elementor-widget elementor-widget-heading" data-id="1e6e685" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default">Our Experts</h2> </div>
                     </div>
-                    <div class="elementor-element elementor-element-ab82582 e-con-full e-flex e-con e-child" data-id="ab82582" data-element_type="container">
-                        <div class="elementor-element elementor-element-9b5c045 e-con-full e-flex e-con e-child" data-id="9b5c045" data-element_type="container">
+                    <div class="elementor-element elementor-element-ab82582 e-con-full e-flex e-con e-child about-founder " data-id="ab82582" data-element_type="container" style="padding-block-start:20px; padding-right:10px; padding-left:11px;">
+                        <div class="elementor-element elementor-element-9b5c045 e-con-full e-flex e-con e-child " data-id="9b5c045" data-element_type="container">
                             <div class="elementor-element elementor-element-93154b4 elementor-position-top elementor-widget elementor-widget-image-box" data-id="93154b4" data-element_type="widget" data-widget_type="image-box.default">
                                 <div class="elementor-widget-container">
                                    <div class="elementor-image-box-wrapper d-flex flex-wrap gap-3">
                                        {% for teams in team %}
-                                           <div class="elementor-image-box-img">
-                                               <figure>
-                                                   <img fetchpriority="high" decoding="async" src="{{ asset('image/' ~ teams.teamPhoto) }}" class="attachment-full size-full" style="height: 300px; width: 300px">
-                                               </figure>
-                                               <div class="elementor-image-box-content">
-                                                   <h3 class="elementor-image-box-title">{{ teams.name }}</h3>
-                                               </div>
-                                                <p class="elementor-icon-box-description">{{ teams.designation}}</p>
-                                           </div>
+                                            <div class="elementor-image-box-img" style="position: relative">
+                                                    <img fetchpriority="high" decoding="async" src="{{ asset('image/' ~ teams.teamPhoto) }}"  style="height: 300px; width: 300px; border-radius: 16px;">
+                                                <div>
+                                                    <div class="d-flex justify-content-center" style="position: absolute; bottom:0px; width:100%">
+                                                        <div class="elementor-image-box-content team-box-wrapper">
+                                                            <div class="team">
+                                                                <h3 class="elementor-image-box-title team-title">{{ teams.name }}</h3>
+                                                                <p class="elementor-icon-box-description team-description mb-0">{{ teams.designation}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                            </div>
                                        {% endfor %}
                                    </div>
                                 </div>
@@ -248,7 +252,7 @@
         <div class="elementor-element elementor-element-a6a3419 elementor-widget elementor-widget-heading" data-id="a6a3419" data-element_type="widget" data-widget_type="heading.default">
             <div class="elementor-widget-container"><h3 class="elementor-heading-title elementor-size-default">NATURE A PROUD LEGACY</h3> </div>
         </div>
-        <div class="elementor-element elementor-element-6f9a822 e-con-full e-flex e-con e-parent" data-id="6f9a822" data-element_type="container">
+        <div class="elementor-element elementor-element-6f9a822 e-con-full e-flex e-con e-parent pb-5" data-id="6f9a822" data-element_type="container">
             <div class="elementor-element elementor-element-eae624a e-con-full e-flex e-con e-child pt-5 pb-0" data-id="eae624a" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
                 <div class="elementor-element elementor-element-ca7fe89 e-con-full e-flex e-con e-child h-100" data-id="ca7fe89" data-element_type="container">
                     <div class="elementor-element elementor-element-e335e38 e-con-full e-flex e-con e-child" data-id="e335e38" data-element_type="container">
@@ -325,7 +329,7 @@
                 </div>
             </div>
         </div>
-        <div class="elementor-element elementor-element-da35790 e-flex e-con-boxed e-con e-parent" data-id="da35790" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+        {# <div class="elementor-element elementor-element-da35790 e-flex e-con-boxed e-con e-parent" data-id="da35790" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
             <div class="e-con-inner">
                 <div class="elementor-element elementor-element-1d5a8b9 e-con-full e-flex e-con e-child" data-id="1d5a8b9" data-element_type="container">
                     <div class="elementor-element elementor-element-7aba097 elementor-widget elementor-widget-heading" data-id="7aba097" data-element_type="widget" data-widget_type="heading.default">
@@ -343,6 +347,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> #}
     </div>
 {% endblock %}
