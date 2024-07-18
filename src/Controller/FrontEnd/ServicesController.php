@@ -5,7 +5,6 @@ namespace App\Controller\FrontEnd;
 use App\Entity\Request as RequestEntity;
 use App\Entity\Services;
 use App\Form\RequestType;
-use App\Repository\ClientRepository;
 use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +17,6 @@ class ServicesController extends AbstractController
 {
     public function __construct(
         private readonly ServicesRepository $servicesRepository,
-        private readonly ClientRepository $clientRepository,
         private readonly EntityManagerInterface $entityManager
     ){
     }
@@ -42,14 +40,12 @@ class ServicesController extends AbstractController
         if ($request->isXmlHttpRequest()) {
             return $this->render('front-end/services/services.html.twig',[
                 'service' => $this->servicesRepository->getServices(),
-                'client' => $this->clientRepository->getClients(),
                 'form' => $form->createView()
             ]);
         }
 
         return $this->render('front-end/services/services.html.twig',[
             'service' => $this->servicesRepository->getServices(),
-            'client' => $this->clientRepository->getClients(),
             'form' => $form->createView()
         ]);
     }
