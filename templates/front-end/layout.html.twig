@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {# <meta name="viewport" content="width=device-width, initial-scale=1"> #}
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <meta name="robots" content="noindex, nofollow">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
@@ -37,6 +38,7 @@
 </head>
 
 <body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="home page-template-default page page-id-7 wp-custom-logo ast-desktop ast-page-builder-template ast-no-sidebar astra-4.6.14 ast-single-post ast-replace-site-logo-transparent ast-inherit-site-logo-transparent ast-theme-transparent-header ast-hfb-header elementor-default elementor-kit-4 elementor-page elementor-page-7 e--ua-blink e--ua-chrome e--ua-webkit" style="" data-elementor-device-mode="desktop" cz-shortcut-listen="true">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW78FQ8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="skip-link screen-reader-text" href="{{path('home_index')}}" role="link" title="Skip to content">Skip to content</a>
     <div class="hfeed site" id="page">
         {% include 'front-end/includes/header.html.twig' %}
@@ -57,9 +59,10 @@
                 </div>
             </div>
         </div>
-
-            {% include 'front-end/includes/footer.html.twig' %}
-    </div>
+        {% block footer %}
+            {% include 'front-end/includes/footer.html.twig' with {'service': service} %}
+        {% endblock %}    
+</div>
 </body>
 
 {% block javascripts %}
@@ -77,5 +80,7 @@
     <script src="{{ asset('js/frontendJs/frontend.min(1).js') }}" id="elementor-frontend-js"></script>
     <script src="{{ asset('js/admin/header.js') }}"></script>
     <script src="{{ asset('js/frontendJs/request.js') }}"></script>
+    <script src="{{ asset('js/frontendJs/toggle.js') }}"></script>
+
 {% endblock %}
 </html>

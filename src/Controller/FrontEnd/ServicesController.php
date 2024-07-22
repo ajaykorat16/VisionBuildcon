@@ -55,6 +55,7 @@ class ServicesController extends AbstractController
     {
         return $this->render('front-end/services/show.html.twig', [
             'services' => $services,
+            'service' => $this->servicesRepository->getServices(),
         ]);
     }
 }

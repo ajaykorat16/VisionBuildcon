@@ -16,16 +16,20 @@
                 <div class="elementor-element elementor-element-7eaab47 elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="7eaab47" data-element_type="widget" data-widget_type="text-editor.default">
                     Vision Buildcon is an Ahmedabad based construction company and is planning to be one of the leading contractors in the construction segment. The company is earning recognition for undertaking large complex projects, fostering innovations , embracing emerging technologies and making a difference for the clients, employees and the community
                 </div>
-                <div class="elementor-element elementor-element-62f6d51 e-con-full e-con">
-                    <div class="elementor-element elementor-element-59f1388 e-con">
-                        <div class="elementor-element elementor-element-2bd3402">
-                            <div class="elementor-button-wrapper">
-                                <a class="elementor-button" href="{{ path('services_index') }}">Our Services</a>
+                <div class="elementor-element elementor-element-62f6d51 e-con-full e-flex e-con e-child">
+                    <div class="elementor-element elementor-element-59f1388 e-con-full e-flex e-con e-child">
+                        <div class="elementor-element elementor-element-2bd3402 elementor-widget__width-initial elementor-widget elementor-widget-button">
+                            <div class="elementor-widget-container"> 
+                                <div class="elementor-button-wrapper">
+                                    <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ path('services_index') }}">Our Services</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="elementor-element elementor-element-7114e20">
-                            <div class="elementor-button-wrapper">
-                                <a class="elementor-button" href="{{ path('contact_us_index') }}">Contact Us</a>
+                        <div class="elementor-element elementor-element-7114e20 elementor-widget__width-auto elementor-widget elementor-widget-button">
+                            <div class="elementor-widget-container"> 
+                                <div class="elementor-button-wrapper">
+                                    <a class="elementor-button" href="{{ path('contact_us_index') }}">Contact Us</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -34,7 +38,7 @@
         </div>
     </div>
     <div class="elementor-element elementor-element-d45c306 e-con">
-        <div class="e-con-inner">
+        <div class="e-con-inner flex-wrap">
             <div class="elementor-element elementor-element-b81be35 e-con-full e-flex e-con">
                 <div class="elementor-element elementor-element-ce79d14 elementor-widget elementor-widget-heading">
                     <div class="elementor-widget-container">
@@ -64,7 +68,7 @@
                 </div>
             </div>
             <div class="elementor-element elementor-element-5b546eb e-con-full e-flex e-con e-child" data-id="5b546eb" data-element_type="container">
-                <div class="elementor-element elementor-element-af11148 e-con-full e-flex e-con e-child" data-id="af11148" data-element_type="container">
+                <div class="elementor-element elementor-element-af11148 e-con-full e-flex e-con e-child" data-id="af11148" data-element_type="container" style="flex-wrap: nowrap;">
                     <div class="elementor-element elementor-element-ff99d01 e-con-full e-flex e-con e-child" data-id="ff99d01" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
                         <div class="elementor-element elementor-element-234dcae elementor-widget elementor-widget-icon-box" data-id="234dcae" data-element_type="widget" data-widget_type="icon-box.default">
                             <div class="elementor-widget-container">
@@ -94,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="elementor-element elementor-element-cb8f633 e-con-full e-flex e-con e-child" data-id="cb8f633" data-element_type="container">
+                <div class="elementor-element elementor-element-cb8f633 e-con-full e-flex e-con e-child" data-id="cb8f633" data-element_type="container" style="flex-wrap: nowrap;">
                     <div class="elementor-element elementor-element-b389b8b e-con-full e-flex e-con e-child" data-id="b389b8b" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
                         <div class="elementor-element elementor-element-39e8808 elementor-widget elementor-widget-icon-box" data-id="39e8808" data-element_type="widget" data-widget_type="icon-box.default">
                             <div class="elementor-widget-container">
@@ -154,13 +158,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="elementor-element elementor-element-d6d6973 e-con-full e-flex e-con e-child" data-id="d6d6973" data-element_type="container">
+                <div class="elementor-element elementor-element-d6d6973 e-con-full e-flex e-con e-child gap-4" data-id="d6d6973" data-element_type="container">
                     {% for services in service|slice(0, 3) %}
                     <div class="elementor-element elementor-element-372a8c5 e-con-full e-flex e-con e-child" data-id="372a8c5" data-element_type="container">
                         <div class="elementor-element elementor-element-b43ee8a elementor-position-top elementor-widget elementor-widget-image-box" data-id="b43ee8a" data-element_type="widget" data-widget_type="image-box.default">
                             <div class="elementor-widget-container">
                                 <div class="elementor-image-box-wrapper">
-                                    <figure class="elementor-image-box-img" style="height: 250px; width: 380px">
+                                    <figure class="elementor-image-box-img" style="height: 250px;">
                                         <img fetchpriority="high" decoding="async"  src="{{ asset('image/' ~ services.servicePhoto) }}" class="attachment-full size-full wp-image-88 w-100 h-100">
                                     </figure>
                                     <div class="elementor-image-box-content">
@@ -404,7 +408,7 @@
     <div class="elementor-element elementor-element-a602a15 e-con-full e-flex e-con e-parent" data-id="a602a15" data-element_type="container">
     <div class="e-con-inner">
         {% for projects in project|slice(0,3) %}
-            <div class="elementor-element elementor-element-e872e62 e-con-full e-flex e-con e-child" data-id="e872e62" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+            <div class="elementor-element elementor-element-e872e62 e-con-full e-flex e-con e-child p-0" data-id="e872e62" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
                <div>
                    {% if projects.images.first()  == true %}
                        <img src="{{ asset('image/' ~ projects.images.first.image) }}" style="height: 250px; width: 380px">

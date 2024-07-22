@@ -3,6 +3,7 @@
 namespace App\Controller\FrontEnd;
 
 use App\Repository\ProjectRepository;
+use App\Repository\ServicesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,7 @@ class ProjectController extends AbstractController
 {
     public function __construct(
         private readonly ProjectRepository $projectRepository,
+        private readonly ServicesRepository $servicesRepository,
     ) {
     }
 
@@ -27,6 +29,7 @@ class ProjectController extends AbstractController
                 ProjectRepository::PAGE_SIZE,
                 ProjectRepository::OFFSET
             ),
+            'service' => $this->servicesRepository->getServices()
         ]);
     }
 

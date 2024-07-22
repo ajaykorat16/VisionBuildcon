@@ -20,19 +20,20 @@
                         <section id="block-12" class="widget widget_block">
                             <h5 class="has-text-color wp-block-heading" style="color:#ffffff">Our Services</h5>
                         </section>
-                        <section id="nav_menu-3" class="widget widget_nav_menu"><nav class="menu-our-services-container" aria-label="Menu">
+                        <section id="nav_menu-3" class="widget widget_nav_menu">
+                            <nav class="menu-our-services-container" aria-label="Menu">
                                 <ul id="menu-our-services" class="menu">
-                                    <li id="menu-item" class="menu-link">R.C.C ( Reinforced Cement Concrete) Construction</li>
-                                    <li id="menu-item" class="menu-link">Construction</li>
-                                    <li id="menu-item" class="menu-link">Flooring</li>
-                                    <li id="menu-item" class="menu-link">Structure and Architecture Consultation</li>
-                                    <li id="menu-item" class="menu-link">Masonry and Plaster</li>
-                                    <li id="menu-item" class="menu-link">Colour</li>
-                                    <li id="menu-item" class="menu-link">Electrical</li>
-                                    <li id="menu-item" class="menu-link">Plumbing</li>
-                                    <li id="menu-item" class="menu-link">Mechanical (Lifts/Motors)</li>
-                                    <li id="menu-item" class="menu-link">Interior Designing</li>
-                                </ul></nav>
+                                {% if service is defined %}
+                                {% for services in service %}
+                                    <a href="{{ path('services_show_service', {'slug' : services.slug}) }}">
+                                        <li id="menu-item" class="menu-link">{{ services.name }}</li>
+                                    </a>
+                                {% endfor %}
+                                {% else %}
+                                <p>Service variable is not available.</p>
+                                {% endif %}
+                                </ul>
+                            </nav>
                         </section> 
                     </aside>
                 </div>
@@ -64,7 +65,7 @@
             <div class="ast-builder-footer-grid-columns site-below-footer-inner-wrap ast-builder-grid-row">
                 <div class="site-footer-below-section-1 site-footer-section site-footer-section-1">
                     <div class="ast-builder-layout-element ast-flex site-footer-focus-item ast-footer-copyright" data-section="section-footer-builder">
-                        <div class="ast-footer-copyright"><p>Copyright @KODMATRIX</p>
+                        <div class="ast-footer-copyright"><p>Copyright @KODMATRIX 2024</p>
                         </div> 
                     </div>
                 </div>

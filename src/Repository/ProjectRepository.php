@@ -14,6 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class ProjectRepository extends ServiceEntityRepository
 {
     use BaseRepository;
+    
     public const PAGE_SIZE = 10;
     public const OFFSET = 0;
 

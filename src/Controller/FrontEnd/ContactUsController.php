@@ -5,6 +5,7 @@ namespace App\Controller\FrontEnd;
 use App\Entity\Request as RequestEntity;
 use App\Form\RequestType;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\ServicesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class ContactUsController extends AbstractController
 {
     public function __construct(
-        private readonly EntityManagerInterface $entityManager
+        private readonly EntityManagerInterface $entityManager,
+        private readonly ServicesRepository $servicesRepository
     ){
     }
 
@@ -35,6 +37,7 @@ class ContactUsController extends AbstractController
         }
 
         return $this->render('front-end/aboutUs/contact.html.twig', [
+            'service' => $this->servicesRepository->getServices(),
             'form' => $form->createView()
         ]);
     }

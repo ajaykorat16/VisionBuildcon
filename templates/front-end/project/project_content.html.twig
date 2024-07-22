@@ -1,10 +1,10 @@
 <a id="project-row-{{ projects.id }}" 
     data-slug="{{ projects.slug }}"  
     data-name="{{ projects.name }}" 
-    class="elementor-element elementor-element-1cc3882 e-con-full e-flex e-con e-child project-item" 
+    class="elementor-element elementor-element-1cc3882 e-con-full e-flex e-con e-child project-item p-0 " 
     data-bs-toggle="modal" 
     data-bs-target="#projectImagesModal{{ projects.id }}" style="cursor:pointer">
-    <div style="height: 250px">
+    <div style="height: 250px;">
         {% if projects.images.first() %}
             <img src="{{ asset('image/' ~ projects.images.first().image) }}" class="h-100 w-100">
         {% endif %}
