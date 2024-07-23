@@ -48,9 +48,7 @@
                         </div>
 
                         <div class="site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
-                            <div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="section-hb-social-icons-1">
                             <div class="ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center"> 
-
                                 <div class="ast-header-social-1-wrap ast-header-social-wrap">
                                     <div class="header-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled d-flex align-items-center flex-column gap-2" style="">
                                         <div class="site-header-below-section-right site-header-section ast-flex ast-grid-right-section">
@@ -86,14 +84,25 @@
                                     </div>
                                 </div>
                             </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="ast-mobile-header" class="ast-mobile-header-wrap " data-type="dropdown">
+    <div id="ast-mobile-header" class="ast-mobile-header-wrap" data-type="dropdown">
+        <div class="flash-messages" >
+            {% for success in app.flashes('success') %}
+                <div class="alert alert-success text-center">
+                    {{ success }}
+                </div>
+            {% endfor %}
+            {% for warning in app.flashes('warning') %}
+                <div class="alert alert-danger text-center">
+                    {{ warning }}
+                </div>
+            {% endfor %}
+        </div>
         <div class="ast-main-header-wrap main-header-bar-wrap">
             <div class="ast-primary-header-bar ast-primary-header main-header-bar site-primary-header-wrap site-header-focus-item ast-builder-grid-row-layout-default ast-builder-grid-row-tablet-layout-default ast-builder-grid-row-mobile-layout-default" data-section="section-primary-header-builder" style="border: transparent">
                 <div class="ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center">
@@ -164,4 +173,5 @@
                 </div>
             </div>
         </div>
+        
 </header>

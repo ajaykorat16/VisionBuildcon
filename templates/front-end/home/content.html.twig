@@ -260,28 +260,6 @@
             </div>
         </div>
     </div>
-    {# <div class="elementor-element elementor-element-b23578b e-flex e-con-boxed e-con e-parent" data-id="b23578b" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-        <div class="e-con-inner">
-            <div class="elementor-element elementor-element-096db6e e-con-full e-flex e-con e-child" data-id="096db6e" data-element_type="container">
-                <div class="elementor-element elementor-element-8ae3646 elementor-widget elementor-widget-heading" data-id="8ae3646" data-element_type="widget" data-widget_type="heading.default">
-                    <div class="elementor-widget-container">
-                        <h4 class="elementor-heading-title elementor-size-default">Sustainability</h4>
-                    </div>
-                </div>
-                <div class="elementor-element elementor-element-dd54f6b elementor-widget elementor-widget-heading" data-id="dd54f6b" data-element_type="widget" data-widget_type="heading.default">
-                    <div class="elementor-widget-container">
-                        <h2 class="elementor-heading-title elementor-size-default">Transform Communities Across the Globe</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="elementor-element elementor-element-cb84393 e-con-full e-flex e-con e-child" data-id="cb84393" data-element_type="container">
-                <div class="elementor-element elementor-element-eab451f elementor-widget elementor-widget-text-editor" data-id="eab451f" data-element_type="widget" data-widget_type="text-editor.default">
-                    <div class="elementor-widget-container">
-                        We improve the quality of life in the community where we work by respecting cultures, engaging local people and protecting the environment.                     </div>
-                </div>
-            </div>
-        </div>
-    </div> #}
     <div class="elementor-element elementor-element-6955d4d e-flex e-con-boxed e-con e-parent" data-id="6955d4d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
         <div class="e-con-inner">
             <div class="elementor-element elementor-element-73ce37a e-con-full e-flex e-con e-child" data-id="73ce37a" data-element_type="container">
@@ -406,28 +384,28 @@
         </div>
     </div>
     <div class="elementor-element elementor-element-a602a15 e-con-full e-flex e-con e-parent" data-id="a602a15" data-element_type="container">
-    <div class="e-con-inner">
-        {% for projects in project|slice(0,3) %}
-            <div class="elementor-element elementor-element-e872e62 e-con-full e-flex e-con e-child p-0" data-id="e872e62" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-               <div>
-                   {% if projects.images.first()  == true %}
-                       <img src="{{ asset('image/' ~ projects.images.first.image) }}" style="height: 250px; width: 380px">
-                   {% endif %}
-               </div>
-                <div class="elementor-element elementor-element-6af6724 elementor-widget elementor-widget-icon-box" data-id="6af6724" data-element_type="widget" data-widget_type="icon-box.default">
-                    <div class="elementor-widget-container">
-                        <div class="elementor-icon-box-wrapper">
-                            <div class="elementor-icon-box-content">
-                                <h4 class="elementor-icon-box-title">
-                                    <span>{{ projects.name }}</span>
-                                </h4>
+        <div class="e-con-inner">
+            {% for projects in project|slice(0,3) %}
+                <div class="elementor-element elementor-element-e872e62 e-con-full e-flex e-con e-child p-0" data-id="e872e62" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                <div>
+                    {% if projects.images.first()  == true %}
+                        <img src="{{ asset('image/' ~ projects.images.first.image) }}" style="height: 250px; width: 380px">
+                    {% endif %}
+                </div>
+                    <div class="elementor-element elementor-element-6af6724 elementor-widget elementor-widget-icon-box" data-id="6af6724" data-element_type="widget" data-widget_type="icon-box.default">
+                        <div class="elementor-widget-container">
+                            <div class="elementor-icon-box-wrapper">
+                                <div class="elementor-icon-box-content">
+                                    <h4 class="elementor-icon-box-title">
+                                        <span>{{ projects.name }}</span>
+                                    </h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
     </div>
     {% include 'front-end/request_form.html.twig' %}
 </div>

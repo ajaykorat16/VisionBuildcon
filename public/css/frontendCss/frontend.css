@@ -655,6 +655,16 @@ a :hover{
     margin: 5px;
     padding: 5px !important;
   }
+
+  .flash-messages {
+    width: 100%;
+    position: absolute;
+    z-index: 5;
+  }
+
+  .alert-success {
+    padding: 4px;
+  }
 }
 
 .elementor-element-1cc3882 a :hover {
