@@ -502,7 +502,17 @@
   overflow: hidden;
 }
 
+.carousel-control-prev:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
 .carousel-control-prev:hover {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.carousel-control-next:focus {
   background-color: transparent !important;
   border-color: transparent !important;
 }
@@ -511,6 +521,10 @@
   background-color: transparent !important;
   border-color: transparent !important;
 }
+
+.carousel {
+  position: unset !important;
+} 
 
 .btn-close {
   box-sizing: content-box;
@@ -537,6 +551,7 @@
 
  .custom-logo {
   border-radius: 5px;
+  max-width: 150px !important;
  }
 
  .carousel-control-next:focus {   
