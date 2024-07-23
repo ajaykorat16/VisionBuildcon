@@ -526,6 +526,14 @@
   position: unset !important;
 } 
 
+.carousel-control-prev-icon {
+  position: fixed;
+}
+
+.carousel-control-next-icon {
+  position: fixed;
+}
+
 .btn-close {
   box-sizing: content-box;
   width: 1em;
@@ -685,3 +693,4 @@ a :hover{
 .elementor-element-1cc3882 a :hover {
   color: #ffffff;
 }
+
