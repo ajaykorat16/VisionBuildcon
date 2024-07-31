@@ -70,8 +70,9 @@ class TeamsRepository extends ServiceEntityRepository
 
     public function findMaxOrder()
     {
-        return $this->createQueryBuilder('tm')
-            ->select('MAX(tm.order_priority)')
+        return $this->createQueryBuilder('t')
+            ->select('MAX(t.order_priority)')
+            ->andWhere('t.deleted_at IS NULL')
             ->getQuery()
             ->getSingleScalarResult();
     }
