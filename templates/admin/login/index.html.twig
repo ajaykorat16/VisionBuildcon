@@ -1,9 +1,9 @@
 {% extends 'admin/login/layout.html.twig' %}
 
 {% block body%}
-    <div class="row justify-content-center align-items-center w-100 h-100" style=" padding-top: 180px">
-        <div class="col-md-6 col-lg-5 position-relative">
-            <h2 class="text-center"><b>Vision Buildcon</b></h2>
+    <div class="row justify-content-center align-items-center w-100 h-100" style=" padding-top: 160px">
+        <div class="col-md-6 col-lg-5 position-relative d-flex flex-column">
+            <img src="{{ asset('img/VISION-BUILDCON.png') }}" style="align-self: center; width: 200px;">
             <div class="login-wrap p-4 p-md-5">
                 <form action="{{ path('app_login') }}" method="post">
                     <div class="form-group mb-4">

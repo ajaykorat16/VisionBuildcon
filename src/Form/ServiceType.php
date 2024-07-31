@@ -24,7 +24,9 @@ class ServiceType extends AbstractType
                 'label' => false,
                 'required' => false
             ])
-            ->add('is_visible',CheckboxType::class)
+            ->add('is_visible', HiddenType::class, [
+                'data' => true, 
+            ])
 
             ->add('save', SubmitType::class, [
                 'attr' => [
