@@ -7932,7 +7932,7 @@ textarea.form-control-lg {
 
 .py-4 {
   padding-top: 1.5rem !important;
-  padding-bottom: 1.5rem !important;
+  padding-bottom: 0.5rem !important;
 }
 
 .py-5 {
@@ -11095,7 +11095,7 @@ body {
 
 .sb-topnav {
   padding-left: 0;
-  height: 56px;
+  height: 70px;
   z-index: 1039;
 }
 .sb-topnav .navbar-brand {
@@ -11120,7 +11120,7 @@ body {
 }
 .sb-sidenav .sb-sidenav-menu .nav {
   font-size: 15px;
-  padding-top: 14px;
+  padding-top: 25px;
   flex-direction: column;
   flex-wrap: nowrap;
 }
@@ -11549,8 +11549,16 @@ body {
 
 .custom-logo {
   border-radius: 5px;
+  height: 70px;
 }
 
 .reset {
   padding-top: 12px;
+}
+
+.elementor-7 .elementor-element.elementor-element-d4ffd3e:not(.elementor-motion-effects-element-type-background), .elementor-7 .elementor-element.elementor-element-d4ffd3e>.elementor-motion-effects-container>.elementor-motion-effects-layer {
+  background-image: url(/img/hero-image-min.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

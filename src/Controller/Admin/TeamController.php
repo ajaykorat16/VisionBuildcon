@@ -58,25 +58,28 @@ class TeamController extends AbstractController
     }
 
     #[Route('/create', name: '_create')]
-    public function create(Request $request):Response
+    public function create(Request $request): Response
     {
         $team = new Teams();
+
+        $maxOrder = $this->teamRepository->findMaxOrder();
+        $newOrder = $maxOrder ? $maxOrder + 1 : 1; 
+        $team->setOrderPriority($newOrder);
 
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->entityManager->persist($team);
             $this->entityManager->flush();
 
-            $this->addFlash('success','New team has been created successfully.');
+            $this->addFlash('success', 'New team has been created successfully.');
 
             return $this->redirectToRoute('teams_list');
         }
 
-        return $this->render('admin/team/create.html.twig',[
-            'form' => $form->createView()
+        return $this->render('admin/team/create.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 

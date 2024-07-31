@@ -44,9 +44,6 @@ var Main = Main || {};
 
                     setTimeout(function(){$(".loading-image").addClass("visibility-hidden")}, 500);
 
-                    // module.onShowModal();
-                    // module.onHideModal();
-
                 }).fail(function (xhr, status, error) {
                     console.error("Failed to load more content: ", error);
                     loadingMore = false;
@@ -55,58 +52,4 @@ var Main = Main || {};
         }
     }
 
-    module.onShowModal = function () {
-        $(document).on('click', 'a[data-bs-toggle="modal"]', function() {
-            var projectSlug = $(this).data('slug');
-            module.fetchProjectImages(projectSlug);
-        });
-    }
-    
-    module.onHideModal = function () {
-        $('#showImages').on('hidden.bs.modal', function () {
-            if (swiper) {
-                swiper.destroy(true, true);
-                swiper = undefined;
-            }
-        });
-    }
-
-    module.fetchProjectImages = function(projectSlug) {
-        $.ajax({
-            url: '/project/' + projectSlug,  // Adjust to match your route
-            method: 'GET',
-            success: function(response) {
-                console.log('Fetched images:', response.images);  // Add this line
-                var images = response.images;
-                var $gallery = $('#image-gallery');
-                $gallery.empty();
-
-                images.forEach(function(image) {
-                    var slide = $('<div class="swiper-slide">').append(
-                        $('<img>').attr('src', '/image/' + image)
-                    );
-                    $gallery.append(slide);
-                });
-                    // Initialize Swiper
-                if (!swiper) {
-                    swiper = new Swiper('.swiper-container', {
-                        loop: true,
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                        },
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                    });
-                } else {
-                    swiper.update();
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error fetching images:', error);
-            }
-        });
-    }
 })(jQuery, Main);

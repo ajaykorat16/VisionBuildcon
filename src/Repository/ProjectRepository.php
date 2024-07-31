@@ -65,8 +65,8 @@ class ProjectRepository extends ServiceEntityRepository
     public function getProjects()
     {
         return $this->createQueryBuilder('p')
-                    ->andWhere('p.deletedAt IS NULL')
-                    ->orderBy('p.id', "DESC")
-                    ->getQuery()->getResult();
+            ->andWhere('p.deletedAt IS NULL')
+            ->orderBy('p.id', "DESC")
+            ->getQuery()->getResult();
     }
 }

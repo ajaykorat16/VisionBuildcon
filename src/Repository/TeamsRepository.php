@@ -67,4 +67,12 @@ class TeamsRepository extends ServiceEntityRepository
             ->orderBy('t.order_priority', "ASC")
             ->getQuery()->getResult();
     }
+
+    public function findMaxOrder()
+    {
+        return $this->createQueryBuilder('tm')
+            ->select('MAX(tm.order_priority)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
