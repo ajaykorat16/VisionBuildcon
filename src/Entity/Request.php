@@ -33,6 +33,9 @@ class Request
     #[Assert\NotBlank]
     private ?string $message = null;
 
+    #[ORM\Column(type: 'datetime', nullable: true)] 
+    private ?\DateTimeInterface $deletedAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -83,6 +86,17 @@ class Request
     {
         $this->message = $message;
 
+        return $this;
+    }
+
+    public function getDeletedAt(): ?\DateTimeInterface
+    {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): self
+    {
+        $this->deletedAt = $deletedAt;
         return $this;
     }
 }

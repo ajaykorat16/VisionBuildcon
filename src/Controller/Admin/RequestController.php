@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Request as EntityRequest;
 use App\Repository\RequestRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +15,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class RequestController extends AbstractController
 {
     public function __construct(
-        private readonly RequestRepository $requestRepository
+        private readonly RequestRepository $requestRepository,
+        private readonly EntityManagerInterface $entityManager
     ){
     }
 
@@ -41,4 +44,15 @@ class RequestController extends AbstractController
 
         return new JsonResponse(['content' => $content], JsonResponse::HTTP_OK);
     }
+
+    #[Route('/delete/{id}' ,name: '_delete')]
+    public function delete(EntityRequest $request): Response
+    {
+        $request->setDeletedAt(new \DateTimeImmutable());
+        $this->entityManager->flush();
+
+        $this->addFlash('success', sprintf('Request %s has been deleted successfully.', $request->getName()));
+        
+        return $this->redirectToRoute('request_list');
+    } 
 }

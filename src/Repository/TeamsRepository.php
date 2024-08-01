@@ -34,7 +34,7 @@ class TeamsRepository extends ServiceEntityRepository
         }
 
         $qb->andWhere('t.deleted_at IS NULL')
-            ->orderBy('t.id', "DESC");
+            ->orderBy('t.order_priority', "ASC");
 
         return $qb;
     }

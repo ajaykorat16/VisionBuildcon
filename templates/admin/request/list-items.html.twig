@@ -4,4 +4,9 @@
     <td class="text-center">{{ requests.email }}</td>
     <td class="text-center">{{ requests.subject }}</td>
     <td class="text-center">{{ requests.message|length >50 ? requests.message|slice(0,40) ~ '...' : requests.message }}</td>
+    <td class="text-center request-action">
+        <a class="delete" data-id="{{ requests.id }}" data-name="{{ requests.name }}" data-entity="request" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            <i class="fa-solid fa-trash"></i>
+        </a>
+    </td>
 </tr>

@@ -26,7 +26,8 @@ class RequestRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('r');
         $qb->setFirstResult($offset);
     
-        $qb->orderBy('r.id', 'DESC');
+        $qb->Where('r.deletedAt IS NULL')
+           ->orderBy('r.id', 'DESC');
     
         if ($count !== null) {
             $qb->setMaxResults($count);
@@ -39,6 +40,7 @@ class RequestRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('r')
             ->select('count(r.id)')
+            ->Where('r.deletedAt IS NULL')
             ->getQuery()
             ->getSingleScalarResult();
     }

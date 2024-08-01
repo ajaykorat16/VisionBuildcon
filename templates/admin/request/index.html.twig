@@ -2,6 +2,10 @@
 
 {% block javascripts %}
     <script src="{{ asset('js/admin/list.js') }}" ></script>
+     <script src="{{ asset('js/admin/delete.js') }}"></script>
+    <script type="text/javascript">
+        Delete.onShowModal();
+    </script>
 {% endblock %}    
 
 {% block body %}
@@ -19,6 +23,8 @@
                 <th>Email</th>
                 <th>Subject</th>
                 <th>Message</th>
+                <th>Action</th>
+
             </tr>
             </thead>
             <!-- Table body -->
@@ -29,7 +35,7 @@
                 {% endfor %}
             {% else %}
                 <tr>
-                    <td colspan="5" class="no-records text-center" style="color: grey;">no records found</td>
+                    <td colspan="6" class="no-records text-center" style="color: grey;">no records found</td>
                 </tr>
             {% endif %}
             </tbody>
@@ -38,4 +44,6 @@
             {% include 'gif/loader-gif.html.twig' with {w: 44, h: 44} %}
         </div>
     </div>
+    {{ include('admin/_delete_modal.html.twig', { 'requests': request } ) }}
+
 {% endblock %}
