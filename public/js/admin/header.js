@@ -28,6 +28,11 @@ $(document).ready(function() {
         }, 4000);
     }
     
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    
     //------------------- front-end header-------------------------//
     const $navbarLinks = $('.site-navigation .menu-item-object-page');
 
