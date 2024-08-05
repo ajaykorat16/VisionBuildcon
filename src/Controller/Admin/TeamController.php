@@ -80,6 +80,7 @@ class TeamController extends AbstractController
 
         return $this->render('admin/team/create.html.twig', [
             'form' => $form->createView(),
+            'isTeam' => false
         ]);
     }
 
@@ -120,7 +121,8 @@ class TeamController extends AbstractController
 
         return $this->render('admin/team/create.html.twig',[
             'form' => $form->createView(),
-            'team' => $team
+            'team' => $team,
+            'isTeam' => true,
         ]);
     }
 
@@ -135,11 +137,24 @@ class TeamController extends AbstractController
     #[Route('/delete/{id}', name: '_delete')]
     public function delete(Teams $team): Response
     {
+        $orderPriority = $team->getOrderPriority();
+    
         $team->setDeletedAt(new \DateTimeImmutable());
+        $this->entityManager->persist($team);
+    
+        $teamsToUpdate = $this->teamRepository->findHigherOrderTeams($orderPriority);
+    
+        foreach ($teamsToUpdate as $teamToUpdate) {
+            $teamToUpdate->setOrderPriority($teamToUpdate->getOrderPriority() - 1);
+            $this->entityManager->persist($teamToUpdate);
+        }
+    
         $this->entityManager->flush();
-
+    
         $this->addFlash('success', sprintf('Team %s has been deleted successfully.', $team->getName()));
-
+    
         return $this->redirectToRoute('teams_list');
     }
+    
+
 }

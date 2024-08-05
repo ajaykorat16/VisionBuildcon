@@ -75,7 +75,8 @@ class ServicesController extends AbstractController
         }
 
         return $this->render('admin/services/create.html.twig',[
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'isService' => false,
         ]);
     }
 
@@ -116,6 +117,7 @@ class ServicesController extends AbstractController
         return $this->render('admin/services/create.html.twig', [
             'form' => $form->createView(),
             'service' => $service,
+            'isService' => true,
         ]);
     }
     

@@ -76,4 +76,15 @@ class TeamsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findHigherOrderTeams(int $orderPriority): array
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.order_priority > :order_priority')
+            ->setParameter('order_priority', $orderPriority)
+            ->andWhere('t.deleted_at IS NULL')
+            ->orderBy('t.order_priority', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

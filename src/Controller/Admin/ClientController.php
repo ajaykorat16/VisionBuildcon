@@ -77,6 +77,7 @@ class ClientController extends AbstractController
 
         return $this->render('admin/client/create.html.twig', [
             'form' => $form->createView(),
+            'isClient' => false,
         ]);
     }
 
@@ -117,7 +118,8 @@ class ClientController extends AbstractController
 
         return $this->render('admin/client/create.html.twig', [
             'form' => $form->createView(),
-            'client' => $client
+            'client' => $client,
+            'isClient' => true,
         ]);
     }
 

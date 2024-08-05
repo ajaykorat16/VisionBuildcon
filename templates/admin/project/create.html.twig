@@ -12,7 +12,12 @@
 
 {% block body %}
     <div class="text-color-grey mt-15">
-        <h2>Project <small>add</small></h2>
+        {% if isProject == 'true' %}
+            <h2>Project <small>edit</small></h2>
+        {% else %}
+            <h2>Project <small>add</small></h2>
+        {% endif %}
+        
     </div>
     <div class="col-md-10 col-md-offset-1 col-xs-12 form-container mt-54">
         {{ form_start(form, {'attr': {'id': 'projects-form','method':'POST','novalidate': 'novalidate'} }) }}
@@ -57,8 +62,9 @@
             </div>
             {{ form_end(form) }}
         </div>
+        <div class="text-center mb-5">
+            <a href="{{ path('projects_list') }}"><i class="fa-solid fa-left-long"></i>  Back to list</a>
+        </div>
     </div>
-    <div class="text-center mt-15 ">
-        <a href="{{ path('projects_list') }}"><i class="fa-solid fa-left-long"></i>  Back to list</a>
-    </div>
+    
 {% endblock %}

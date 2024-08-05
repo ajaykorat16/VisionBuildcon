@@ -11561,3 +11561,19 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.truncate-text {
+  display: inline-block;
+  max-width: 200px; /* Adjust the width as needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tooltip-inner {
+  background-color: #FFFFFF;
+  color: black;
+  border: 1px solid #ccc;
+  white-space: pre-wrap; /* Allow multiline text */
+}

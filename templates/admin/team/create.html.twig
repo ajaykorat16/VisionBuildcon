@@ -12,7 +12,12 @@
 
 {% block body %}
     <div class="text-color-grey mt-15">
-        <h2>Team <small>add</small></h2>
+        {% if isTeam == 'true' %}
+            <h2>Team <small>edit</small></h2>
+        {% else %}
+            <h2>Team <small>add</small></h2>
+        {% endif %}
+        
     </div>
     <div class="col-md-10 col-md-offset-1 col-xs-12 form-container mt-54">
         {{ form_start(form, {'attr': {'id': 'team-form','method':'POST','novalidate': 'novalidate'} }) }}
@@ -66,7 +71,7 @@
             {{ form_end(form) }}
         </div>
     </div>
-    <div class="text-center mt-15 ">
+    <div class="text-center mb-5 ">
         <a href="{{ path('teams_list') }}"><i class="fa-solid fa-left-long"></i>  Back to list</a>
     </div>
 {% endblock %}

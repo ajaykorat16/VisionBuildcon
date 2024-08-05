@@ -25,7 +25,7 @@ $(document).ready(function() {
     if (flashMessages.length > 0) {
         setTimeout(function() {
             flashMessages.hide();
-        }, 5000);
+        }, 4000);
     }
     
     //------------------- front-end header-------------------------//

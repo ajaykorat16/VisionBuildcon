@@ -88,7 +88,8 @@ class ProjectController extends AbstractController
         }
 
         return $this->render('admin/project/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'isProject' => false,
         ]);
     }
 
@@ -134,7 +135,8 @@ class ProjectController extends AbstractController
 
         return $this->render('admin/project/create.html.twig', [
             'form' => $form->createView(),
-            'project' => $project
+            'project' => $project,
+            'isProject' => true,
         ]);
     }
 
