@@ -11576,4 +11576,6 @@ body {
   color: black;
   border: 1px solid #ccc;
   white-space: pre-wrap; /* Allow multiline text */
+  max-width: 400px; /* Set a max-width or width as needed */
+  width: auto; /* Optional: adjust the width behavior */
 }
